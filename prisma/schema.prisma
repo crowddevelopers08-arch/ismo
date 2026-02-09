@@ -1,0 +1,58 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id              String        @id @default(cuid())
+  name            String
+  phone           String
+  email           String?
+  course          String?
+  message         String?
+  source          String?   // URL where form was submitted
+  formName        String?   // Form identifier
+  consent         Boolean   @default(false)
+  
+  // TeleCRM integration fields
+  telecrmSynced   Boolean   @default(false)
+  telecrmId       String?
+  telecrmError    String?
+  
+  // Lead management
+  status          LeadStatus    @default(NEW)
+  priority        LeadPriority  @default(MEDIUM)
+  
+  // Timestamps
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  syncedAt        DateTime?
+
+  @@index([phone])
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@map("leads")
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  SCHEDULED
+  CONVERTED
+  LOST
+  INVALID
+}
+
+enum LeadPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
