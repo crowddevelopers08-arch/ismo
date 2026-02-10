@@ -201,7 +201,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
         aria-label="Close form"
       >
         <svg
-          className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#634031]"
+          className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#65302f]"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -218,7 +218,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
 
       {/* Title */}
       <motion.h2
-        className="text-xl sm:text-2xl font-bold text-[#634031] mb-1 sm:mb-2 text-center pr-6 sm:pr-8"
+        className="text-xl sm:text-2xl font-bold text-[#65302f] mb-1 sm:mb-2 text-center pr-6 sm:pr-8"
         variants={itemVariants}
       >
         Book Your Hair Consultation at ISMO, RA Puram
@@ -280,7 +280,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
           <motion.div className="flex flex-col" variants={itemVariants}>
             <label
               htmlFor="name"
-              className="text-xs sm:text-sm font-semibold text-[#634031] mb-1"
+              className="text-xs sm:text-sm font-semibold text-[#65302f] mb-1"
             >
               Name <span className="text-red-500">*</span>
             </label>
@@ -292,10 +292,10 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#e0c9c2] bg-white text-[#634031] placeholder:text-[#785546]/60 focus:outline-none focus:ring-2 focus:ring-[#634031] transition-all duration-300 text-xs sm:text-sm"
+              className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#e0c9c2] bg-white text-[#65302f] placeholder:text-[#785546]/60 focus:outline-none focus:ring-2 focus:ring-[#65302f] transition-all duration-300 text-xs sm:text-sm"
               whileFocus={{
                 scale: 1.02,
-                borderColor: "#634031",
+                borderColor: "#65302f",
                 transition: { duration: 0.2 },
               }}
             />
@@ -304,7 +304,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
           <motion.div className="flex flex-col" variants={itemVariants}>
             <label
               htmlFor="phone"
-              className="text-xs sm:text-sm font-semibold text-[#634031] mb-1"
+              className="text-xs sm:text-sm font-semibold text-[#65302f] mb-1"
             >
               Mobile Number <span className="text-red-500">*</span>
             </label>
@@ -316,10 +316,10 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
               value={formData.phone}
               onChange={handleInputChange}
               required
-              className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#e0c9c2] bg-white text-[#634031] placeholder:text-[#785546]/60 focus:outline-none focus:ring-2 focus:ring-[#634031] transition-all duration-300 text-xs sm:text-sm"
+              className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#e0c9c2] bg-white text-[#65302f] placeholder:text-[#785546]/60 focus:outline-none focus:ring-2 focus:ring-[#65302f] transition-all duration-300 text-xs sm:text-sm"
               whileFocus={{
                 scale: 1.02,
-                borderColor: "#634031",
+                borderColor: "#65302f",
                 transition: { duration: 0.2 },
               }}
             />
@@ -330,7 +330,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
         <motion.div className="flex flex-col" variants={itemVariants}>
           <label
             htmlFor="treatment"
-            className="text-xs sm:text-sm font-semibold text-[#634031] mb-1"
+            className="text-xs sm:text-sm font-semibold text-[#65302f] mb-1"
           >
             Treatment Interested In
           </label>
@@ -339,7 +339,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
             name="treatment"
             value={formData.treatment}
             onChange={handleInputChange}
-            className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#634031] bg-white text-[#634031] focus:outline-none focus:ring-2 focus:ring-[#634031] transition-all duration-300 text-xs sm:text-sm"
+            className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#65302f] bg-white text-[#65302f] focus:outline-none focus:ring-2 focus:ring-[#65302f] transition-all duration-300 text-xs sm:text-sm"
             whileFocus={{
               scale: 1.02,
               transition: { duration: 0.2 },
@@ -357,7 +357,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
         <motion.div className="flex flex-col" variants={itemVariants}>
           <label
             htmlFor="concern"
-            className="text-xs sm:text-sm font-semibold text-[#634031] mb-1"
+            className="text-xs sm:text-sm font-semibold text-[#65302f] mb-1"
           >
             Concern
           </label>
@@ -366,7 +366,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
             name="concern"
             value={formData.concern}
             onChange={handleInputChange}
-            className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#634031] bg-white text-[#634031] focus:outline-none focus:ring-2 focus:ring-[#634031] transition-all duration-300 text-xs sm:text-sm"
+            className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#65302f] bg-white text-[#65302f] focus:outline-none focus:ring-2 focus:ring-[#65302f] transition-all duration-300 text-xs sm:text-sm"
             whileFocus={{
               scale: 1.02,
               transition: { duration: 0.2 },
@@ -385,7 +385,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
         <motion.div className="flex flex-col" variants={itemVariants}>
           <label
             htmlFor="preferredDateTime"
-            className="text-xs sm:text-sm font-semibold text-[#634031] mb-1"
+            className="text-xs sm:text-sm font-semibold text-[#65302f] mb-1"
           >
             Preferred Date & Time
           </label>
@@ -396,10 +396,10 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
             placeholder="e.g., Tomorrow 4 PM or This Saturday 11 AM"
             value={formData.preferredDateTime}
             onChange={handleInputChange}
-            className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#e0c9c2] bg-white text-[#634031] placeholder:text-[#785546]/60 focus:outline-none focus:ring-2 focus:ring-[#634031] transition-all duration-300 text-xs sm:text-sm"
+            className="w-full px-3 py-1.5 sm:py-2 rounded-md border border-[#e0c9c2] bg-white text-[#65302f] placeholder:text-[#785546]/60 focus:outline-none focus:ring-2 focus:ring-[#65302f] transition-all duration-300 text-xs sm:text-sm"
             whileFocus={{
               scale: 1.02,
-              borderColor: "#634031",
+              borderColor: "#65302f",
               transition: { duration: 0.2 },
             }}
           />
@@ -417,7 +417,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
         <motion.button
           type="submit"
           disabled={isSubmitting}
-          className="w-full mt-1 px-4 sm:px-6 py-2 sm:py-2.5 bg-[#634031] text-white font-semibold rounded-full hover:bg-[#785546] disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-300 text-xs sm:text-sm shadow-md shadow-[rgba(120,85,70,0.2)]"
+          className="w-full mt-1 px-4 sm:px-6 py-2 sm:py-2.5 bg-[#65302f] text-white font-semibold rounded-full hover:bg-[#785546] disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-300 text-xs sm:text-sm shadow-md shadow-[rgba(120,85,70,0.2)]"
           variants={buttonVariants}
           whileHover={!isSubmitting ? "hover" : undefined}
           whileTap={!isSubmitting ? "tap" : undefined}

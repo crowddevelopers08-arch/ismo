@@ -135,7 +135,7 @@ const BeforeAfterSection = () => {
   const buttonVariants = {
     hover: {
       scale: 1.05,
-      boxShadow: "0 10px 25px rgba(99, 64, 49, 0.2)",
+      boxShadow: "0 10px 25px rgba(101, 48, 47, 0.2)",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -220,7 +220,7 @@ const BeforeAfterSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#634031] mb-3 md:mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#65302f] mb-3 md:mb-4"
             >
               Real Patients. Real Hair Regrowth.
             </motion.h2>
@@ -284,24 +284,24 @@ const BeforeAfterSection = () => {
                         className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"
                       >
                         {/* Before Label */}
-                        <motion.div
+                        {/* <motion.div
                           initial={{ x: -20, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
                           transition={{ delay: 0.1 }}
                           className="absolute top-3 left-3 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium"
                         >
                           {item.beforeLabel}
-                        </motion.div>
+                        </motion.div> */}
                         
                         {/* After Label */}
-                        <motion.div
+                        {/* <motion.div
                           initial={{ x: 20, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
                           transition={{ delay: 0.1 }}
                           className="absolute top-3 right-3 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium"
                         >
                           {item.afterLabel}
-                        </motion.div>
+                        </motion.div> */}
                         
                         {/* Center Arrow Indicator */}
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -321,20 +321,20 @@ const BeforeAfterSection = () => {
                 </div>
                 
                 {/* Image Info */}
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
                   className="p-3 text-center"
                 >
-                  <h3 className="text-sm font-semibold text-[#634031] mb-1">
+                  <h3 className="text-sm font-semibold text-[#65302f] mb-1">
                     {item.title}
                   </h3>
                   <p className="text-xs text-[#785546]">
                     {item.description}
                   </p>
-                </motion.div>
+                </motion.div> */}
               </motion.div>
             ))}
           </motion.div>
@@ -375,7 +375,7 @@ const BeforeAfterSection = () => {
                       />
                       
                       {/* Labels */}
-                      <motion.div
+                      {/* <motion.div
                         initial={{ y: -20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2 }}
@@ -390,7 +390,7 @@ const BeforeAfterSection = () => {
                         className="absolute top-3 right-3 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium"
                       >
                         {item.afterLabel}
-                      </motion.div>
+                      </motion.div> */}
                       
                       {/* Center Divider */}
                       <div className="absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-white/80">
@@ -409,7 +409,7 @@ const BeforeAfterSection = () => {
                     </div>
                     
                     {/* Image Info for Mobile */}
-                    <AnimatePresence>
+                    {/* <AnimatePresence>
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -433,7 +433,7 @@ const BeforeAfterSection = () => {
                           {item.description}
                         </motion.p>
                       </motion.div>
-                    </AnimatePresence>
+                    </AnimatePresence> */}
                   </motion.div>
                 ))}
               </div>
@@ -444,7 +444,7 @@ const BeforeAfterSection = () => {
                 whileHover="hover"
                 whileTap="tap"
                 onClick={prevSlide}
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 text-[#634031] w-8 h-14 flex items-center justify-center rounded-l-md shadow-lg"
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/90 text-[#65302f] w-8 h-14 flex items-center justify-center rounded-l-md shadow-lg"
                 aria-label="Previous image"
               >
                 <motion.div variants={arrowVariants} whileHover="hover">
@@ -457,7 +457,7 @@ const BeforeAfterSection = () => {
                 whileHover="hover"
                 whileTap="tap"
                 onClick={nextSlide}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 text-[#634031] w-8 h-14 flex items-center justify-center rounded-r-md shadow-lg"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/90 text-[#65302f] w-8 h-14 flex items-center justify-center rounded-r-md shadow-lg"
                 aria-label="Next image"
               >
                 <motion.div variants={arrowVariants} whileHover="hover">
@@ -509,7 +509,7 @@ const BeforeAfterSection = () => {
               whileHover="hover"
               whileTap="tap"
               onClick={handleOpenForm}
-              className="bg-[#634031] text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base md:text-lg font-medium hover:bg-[#e0c9c2] hover:text-[#634031] transition duration-300 rounded relative overflow-hidden"
+              className="bg-[#65302f] text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base md:text-lg font-medium hover:bg-[#e0c9c2] hover:text-[#65302f] transition duration-300 rounded relative overflow-hidden"
             >
               <motion.span
                 initial={{ x: "-100%" }}

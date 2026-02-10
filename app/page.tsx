@@ -30,14 +30,16 @@ export default function Home() {
 
         <DentalScalingOffer />
 
-        {/* <DentalCareSection /> */}
+
 
         <section id="testimonials">
           <TestimonialsSection />
         </section>
+                <DentalCareSection />
         <section id="faq">
           <FAQ />
         </section>
+
         <Footer />
       </main>
     </>

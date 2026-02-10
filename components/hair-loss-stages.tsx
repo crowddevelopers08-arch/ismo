@@ -11,7 +11,7 @@ const ProcedureSection = () => {
       alt: "Advanced Hair Assessment",
       content: (
         <>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#634031] mb-2 md:mb-3 font-outfit">Advanced Hair Assessment</h3>
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#65302f] mb-2 md:mb-3 font-outfit">Advanced Hair Assessment</h3>
           <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Our dermatologists perform a detailed scalp analysis using trichoscopy to examine hair root health, density, and growth patterns.</p>
         </>
       ),
@@ -22,7 +22,7 @@ const ProcedureSection = () => {
       alt: "Personalized Treatment Plan",
       content: (
         <>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#634031] mb-2 md:mb-3 font-outfit">Personalized Treatment Plan</h3>
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#65302f] mb-2 md:mb-3 font-outfit">Personalized Treatment Plan</h3>
           <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Based on your assessment, we design a customized combination of therapies like QR 678, PRP, GFC, or laser treatments tailored to your needs.</p>
         </>
       ),
@@ -33,7 +33,7 @@ const ProcedureSection = () => {
       alt: "Treatment & Monitoring",
       content: (
         <>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#634031] mb-2 md:mb-3 font-outfit">Treatment & Monitoring</h3>
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#65302f] mb-2 md:mb-3 font-outfit">Treatment & Monitoring</h3>
           <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Your treatment begins with precision. We monitor progress monthly and adjust protocols to ensure optimal hair regrowth and thickness.</p>
         </>
       ),
@@ -44,7 +44,7 @@ const ProcedureSection = () => {
       alt: "Results & Maintenance",
       content: (
         <>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#634031] mb-2 md:mb-3 font-outfit">Results & Maintenance</h3>
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#65302f] mb-2 md:mb-3 font-outfit">Results & Maintenance</h3>
           <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Visible improvement in hair density and reduced hair fall. We provide maintenance guidelines for long-term hair health.</p>
         </>
       ),
@@ -55,7 +55,7 @@ const ProcedureSection = () => {
       alt: "Holistic Wellness Support",
       content: (
         <>
-          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#634031] mb-2 md:mb-3 font-outfit">Holistic Wellness Support</h3>
+          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#65302f] mb-2 md:mb-3 font-outfit">Holistic Wellness Support</h3>
           <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Nutrition, stress management, and lifestyle guidance to address root causes of hair loss for sustainable results.</p>
         </>
       ),
@@ -84,7 +84,7 @@ const ProcedureSection = () => {
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-[#101828] mb-3 leading-tight font-outfit">
-            Why Choose <span className="text-[#785546]">ISMO</span> for Your Hair?
+            Why Choose <span className="text-[#65302f]">ISMO</span> for Your Hair?
           </h2>
           <p className="text-base md:text-lg lg:text-xl text-[#785546] max-w-3xl mx-auto leading-relaxed font-outfit">
             ISMO Skin Clinic stands out in Chennai for its blend of technology, medical expertise, and patient-first care.
@@ -109,12 +109,12 @@ const ProcedureSection = () => {
                   <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-semibold mr-3 md:mr-3 transition-all duration-300 flex-shrink-0 border font-outfit ${
                     activeStep === step 
                       ? 'bg-[#785546] text-white border-[#785546]' 
-                      : 'bg-[#fff7f1] text-[#634031] border-[#e0c9c2]'
+                      : 'bg-[#fff7f1] text-[#65302f] border-[#e0c9c2]'
                   }`}>
                     {step}
                   </div>
                   <span className={`text-sm md:text-base font-semibold transition-colors duration-200 font-outfit ${
-                    activeStep === step ? 'text-[#785546]' : 'text-[#634031]'
+                    activeStep === step ? 'text-[#785546]' : 'text-[#65302f]'
                   }`}>
                     {data[step].shortTitle}
                   </span>

@@ -100,14 +100,14 @@ export default function TestimonialsSection() {
       <section className="w-full min-h-screen bg-gradient-to-br from-[#fff7f1] via-[#fff7f1] to-[#f8f0e9] flex items-center justify-center py-8 lg:py-0 overflow-hidden relative">
         {/* Background accents */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#785546]/5 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#634031]/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#65302f]/5 to-transparent rounded-full blur-3xl"></div>
 
         <div className="container mx-auto max-[470px]:px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-6 lg:gap-10 xl:gap-16 w-full mx-auto">
             
             {/* Left Content */}
             <div className="lg:relative lg:left-[70px] xl:left-[250px] z-10 order-2 lg:order-1">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 text-[#634031] text-center lg:text-left">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 text-[#65302f] text-center lg:text-left">
                 Our Celebrity Reviews
               </h2>
 
@@ -143,7 +143,7 @@ export default function TestimonialsSection() {
                     {/* Content */}
                     <div className="space-y-4 text-center">
                       <div>
-                        <h3 className="font-bold text-[#634031]">{celebrityReviews[current].name}</h3>
+                        <h3 className="font-bold text-[#65302f]">{celebrityReviews[current].name}</h3>
                         <p className="text-sm text-[#785546]">{celebrityReviews[current].title}</p>
                       </div>
 
@@ -162,7 +162,7 @@ export default function TestimonialsSection() {
                       </div>
 
                       {/* Quote */}
-                      <p className="text-[#634031]/80 italic text-sm lg:text-base leading-relaxed">
+                      <p className="text-[#65302f]/80 italic text-sm lg:text-base leading-relaxed">
                         "{celebrityReviews[current].quote}"
                       </p>
                     </div>
@@ -192,7 +192,7 @@ export default function TestimonialsSection() {
                     {/* Content */}
                     <div className="space-y-4 text-center">
                       <div>
-                        <h3 className="font-bold text-[#634031]">{celebrityReviews[(current + 1) % celebrityReviews.length].name}</h3>
+                        <h3 className="font-bold text-[#65302f]">{celebrityReviews[(current + 1) % celebrityReviews.length].name}</h3>
                         <p className="text-sm text-[#785546]">{celebrityReviews[(current + 1) % celebrityReviews.length].title}</p>
                       </div>
 
@@ -211,7 +211,7 @@ export default function TestimonialsSection() {
                       </div>
 
                       {/* Quote */}
-                      <p className="text-[#634031]/80 italic text-sm lg:text-base leading-relaxed">
+                      <p className="text-[#65302f]/80 italic text-sm lg:text-base leading-relaxed">
                         "{celebrityReviews[(current + 1) % celebrityReviews.length].quote}"
                       </p>
                     </div>
@@ -222,7 +222,7 @@ export default function TestimonialsSection() {
               {/* Bottom Ratings + Button */}
               <div className="mt-6 lg:mt-10 bg-white p-4 lg:p-6 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm border border-[#e0c9c2]">
                 <div className="flex items-center gap-3">
-                  <p className="text-2xl lg:text-3xl font-bold text-[#634031]">5.0</p>
+                  <p className="text-2xl lg:text-3xl font-bold text-[#65302f]">5.0</p>
                   <div>
                     <p className="text-sm text-[#785546]">Ratings</p>
                     <div className="flex gap-1">
@@ -240,7 +240,7 @@ export default function TestimonialsSection() {
 
                 <button 
                   onClick={handleContactClick}
-                  className="bg-gradient-to-r from-[#634031] to-[#785546] hover:from-[#503225] hover:to-[#634031] transition px-6 py-3 rounded-full font-medium text-[#fff7f1] text-sm lg:text-base w-full sm:w-auto shadow-md hover:shadow-lg"
+                  className="bg-gradient-to-r from-[#65302f] to-[#785546] hover:from-[#503225] hover:to-[#65302f] transition px-6 py-3 rounded-full font-medium text-[#fff7f1] text-sm lg:text-base w-full sm:w-auto shadow-md hover:shadow-lg"
                 >
                   Contact Us
                 </button>
@@ -250,7 +250,7 @@ export default function TestimonialsSection() {
             {/* Right Image */}
             <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#634031]/10 via-[#785546]/10 to-[#634031]/10 rounded-2xl blur-xl"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#65302f]/10 via-[#785546]/10 to-[#65302f]/10 rounded-2xl blur-xl"></div>
                 <Image
                   src="/revvie.jpg"
                   alt="Happy Client"

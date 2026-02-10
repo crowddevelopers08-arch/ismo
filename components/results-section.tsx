@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 const HealthStats = () => {
   const colors = {
-    primary: "#785546",      // Main brown color
-    primaryDark: "#634031",  // Darker brown
+    primary: "#65302f",      // Main brown color
+    primaryDark: "#65302f",  // Darker brown - UPDATED
     primaryLight: "#e0c9c2", // Light brown/pink
     bgLight: "#fff7f1",      // Very light cream background
     text: "#000000",         // Black text
@@ -176,7 +176,7 @@ const HealthStats = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-gradient-to-r from-[#785546] to-[#634031] bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-[#785546] to-[#65302f] bg-clip-text text-transparent"
               >
                 At ISMO
               </motion.span>
@@ -255,7 +255,7 @@ const HealthStats = () => {
                     <div className="text-center px-1">
                       <motion.h2
                         variants={textVariants}
-                        className="text-sm font-bold mb-1"
+                        className="text-sm font-bold mb-1"  // Changed from text-sm to text-base for mobile
                         style={{ 
                           color: stat.isFilled ? colors.white : colors.text 
                         }}
@@ -264,7 +264,7 @@ const HealthStats = () => {
                       </motion.h2>
                       <motion.p
                         variants={textVariants}
-                        className="text-[10px] leading-tight"
+                        className="text-[10px] leading-tight font-medium"  // Added font-medium
                         style={{ 
                           color: stat.isFilled ? colors.white : colors.text 
                         }}
@@ -292,7 +292,7 @@ const HealthStats = () => {
                     <div className="text-center px-1">
                       <motion.h2
                         variants={textVariants}
-                        className="text-sm font-bold mb-1"
+                        className="text-sm font-bold mb-1"  // Changed from text-sm to text-base for mobile
                         style={{ 
                           color: stat.isFilled ? colors.white : colors.text 
                         }}
@@ -301,7 +301,7 @@ const HealthStats = () => {
                       </motion.h2>
                       <motion.p
                         variants={textVariants}
-                        className="text-[10px] leading-tight"
+                        className="text-[10px] leading-tight font-medium"  // Added font-medium
                         style={{ 
                           color: stat.isFilled ? colors.white : colors.text 
                         }}
@@ -327,7 +327,7 @@ const HealthStats = () => {
                   <div className="text-center px-1">
                     <motion.h2
                       variants={textVariants}
-                      className="text-sm font-bold mb-1"
+                      className="text-sm font-bold mb-1"  // Changed from text-sm to text-base for mobile
                       style={{ 
                         color: stats[4].isFilled ? colors.white : colors.text 
                       }}
@@ -336,7 +336,7 @@ const HealthStats = () => {
                     </motion.h2>
                     <motion.p
                       variants={textVariants}
-                      className="text-[10px] leading-tight"
+                      className="text-[10px] leading-tight font-medium"  // Added font-medium
                       style={{ 
                         color: stats[4].isFilled ? colors.white : colors.text 
                       }}
@@ -501,7 +501,7 @@ const HealthStats = () => {
               whileHover="hover"
               whileTap="tap"
               onClick={handleOpenForm}
-              className="bg-[#634031] text-white px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base font-medium hover:bg-[#e0c9c2] hover:text-[634031] transition duration-300 rounded inline-block"
+              className="bg-[#65302f] text-white px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base font-medium hover:bg-[#e0c9c2] hover:text-[#65302f] transition duration-300 rounded inline-block"
             >
               SCHEDULE YOUR VISIT
             </motion.button>

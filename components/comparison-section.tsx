@@ -72,7 +72,7 @@ const HairCareSection = () => {
   const buttonVariants = {
     hover: {
       scale: 1.05,
-      boxShadow: "0 10px 25px rgba(99, 64, 49, 0.2)",
+      boxShadow: "0 10px 25px rgba(101, 48, 47, 0.2)",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -179,7 +179,7 @@ const HairCareSection = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="absolute inset-0 bg-gradient-to-r from-[#634031]/20 via-transparent to-[#634031]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              className="absolute inset-0 bg-gradient-to-r from-[#65302f]/20 via-transparent to-[#65302f]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
             
             {/* Image container */}
@@ -218,7 +218,7 @@ const HairCareSection = () => {
                 whileHover="hover"
                 whileTap="tap"
                 onClick={handleOpenForm}
-                className="mt-4 md:mt-6 bg-[#634031] text-white px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium hover:bg-[#e0c9c2] hover:text-[#634031] transition duration-300 rounded relative overflow-hidden"
+                className="mt-4 md:mt-6 bg-[#65302f] text-white px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium hover:bg-[#e0c9c2] hover:text-[#65302f] transition duration-300 rounded relative overflow-hidden"
               >
                 <motion.span
                   initial={{ x: "-100%" }}
@@ -253,7 +253,7 @@ const HairCareSection = () => {
 
             <motion.h3
               variants={textVariants}
-              className="text-lg sm:text-xl font-medium text-[#634031]"
+              className="text-lg sm:text-xl font-medium text-[#65302f]"
             >
               QR 678 Hair Treatment
             </motion.h3>
@@ -273,7 +273,7 @@ const HairCareSection = () => {
               whileHover="hover"
               whileTap="tap"
               onClick={handleOpenForm}
-              className="mt-4 md:mt-5 bg-[#634031] text-white px-4 sm:px-6 py-2 text-xs sm:text-sm hover:bg-[#e0c9c2] hover:text-[#634031] transition duration-300 rounded relative overflow-hidden"
+              className="mt-4 md:mt-5 bg-[#65302f] text-white px-4 sm:px-6 py-2 text-xs sm:text-sm hover:bg-[#e0c9c2] hover:text-[#65302f] transition duration-300 rounded relative overflow-hidden"
             >
               <motion.span
                 initial={{ x: "-100%" }}
@@ -316,7 +316,7 @@ const HairCareSection = () => {
                 <motion.h3
                   variants={textVariants}
                   custom={index}
-                  className="text-lg sm:text-xl font-medium text-[#634031]"
+                  className="text-lg sm:text-xl font-medium text-[#65302f]"
                 >
                   {item.title}
                 </motion.h3>
@@ -335,7 +335,7 @@ const HairCareSection = () => {
                   whileHover="hover"
                   whileTap="tap"
                   onClick={handleOpenForm}
-                  className="mt-4 md:mt-5 bg-[#634031] text-white px-4 sm:px-6 py-2 text-xs sm:text-sm hover:bg-[#e0c9c2] hover:text-[#634031] transition duration-300 rounded relative overflow-hidden"
+                  className="mt-4 md:mt-5 bg-[#65302f] text-white px-4 sm:px-6 py-2 text-xs sm:text-sm hover:bg-[#e0c9c2] hover:text-[#65302f] transition duration-300 rounded relative overflow-hidden"
                 >
                   <motion.span
                     initial={{ x: "-100%" }}
@@ -373,7 +373,7 @@ const HairCareSection = () => {
             whileHover="hover"
             whileTap="tap"
             onClick={handleOpenForm}
-            className="bg-[#634031] text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium hover:bg-[#e0c9c2] hover:text-[#634031] transition duration-300 rounded relative overflow-hidden"
+            className="bg-[#65302f] text-white px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-medium hover:bg-[#e0c9c2] hover:text-[#65302f] transition duration-300 rounded relative overflow-hidden"
           >
             <motion.span
               initial={{ x: "-100%" }}

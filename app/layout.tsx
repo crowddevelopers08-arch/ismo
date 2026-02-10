@@ -10,14 +10,14 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "Dental-care-lp Welcome to Alora Dental",
+  title: "ISMO Clinic, Chennai",
   description:
-    "Bangalore's Most Trusted Dental Clinic for Advanced Care.",
+    "Regrow Thicker,Fuller Hair atISMO Clinic, Chennai",
   generator: 'Nextjs15',
   icons: {
     icon: [
       {
-        url: "/Alo.jpg",
+        url: "/ismocolour.png",
         sizes: "any",
       },
       {
@@ -63,27 +63,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} antialiased`}>
       <head>
-        {/* Google Ads Conversion Tracking */}
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-16722442662"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-ads-conversion"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-16722442662');
-              gtag('config', 'AW-16722442662/hLpZCIOj_ZcbEKbz8KU-', {
-                'phone_conversion_number': '80797 91010'
-              });
-            `,
-          }}
-        />
       </head>
       <body className="font-sans">
         {children}

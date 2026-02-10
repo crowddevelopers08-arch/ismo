@@ -56,7 +56,7 @@ const FAQSection = () => {
         </div>
       )}
 
-      <section className="w-full py-10 sm:py-10 md:py-10 lg:py-14 px-4 sm:px-6 md:px-8">
+      <section className="w-full py-10 sm:py-10 md:py-10 lg:py-14 px-4 sm:px-6 max-[470px]:pt-2 md:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <motion.div
@@ -68,13 +68,13 @@ const FAQSection = () => {
           >
             {/* Decorative Element */}
             <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6">
-              <div className="w-8 sm:w-10 h-0.5 bg-gradient-to-r from-transparent via-[#634031] to-transparent"></div>
-              <span className="text-[#785546] font-medium text-sm sm:text-base">FAQs</span>
-              <div className="w-8 sm:w-10 h-0.5 bg-gradient-to-l from-transparent via-[#634031] to-transparent"></div>
+              <div className="w-8 sm:w-10 h-0.5 bg-gradient-to-r from-transparent via-[#65302f] to-transparent"></div>
+              <span className="text-[#65302f] font-medium text-sm sm:text-base">FAQs</span>
+              <div className="w-8 sm:w-10 h-0.5 bg-gradient-to-l from-transparent via-[#65302f] to-transparent"></div>
             </div>
             
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-              <span className="bg-gradient-to-r from-[#634031] via-[#785546] to-[#634031] bg-clip-text text-transparent">
+              <span className="text-[#65302f] bg-clip-text">
                 Frequently Asked Questions
               </span>
             </h2>
@@ -103,13 +103,13 @@ const FAQSection = () => {
                     <div className="flex items-start gap-3 sm:gap-4 flex-1">
                       {/* Number Indicator */}
                       <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-[#fff7f1] to-[#e0c9c2] rounded-full flex items-center justify-center shadow-sm">
-                        <span className="text-xs sm:text-sm font-bold text-[#634031]">
+                        <span className="text-xs sm:text-sm font-bold text-[#65302f]">
                           {index + 1}
                         </span>
                       </div>
                       
                       {/* Question */}
-                      <span className="text-sm sm:text-base md:text-lg font-semibold text-[#634031] group-hover:text-[#785546] transition-colors duration-200 pr-2 text-left">
+                      <span className="text-sm sm:text-base md:text-lg font-semibold text-[#65302f] group-hover:text-[#785546] transition-colors duration-200 pr-2 text-left">
                         {faq.question}
                       </span>
                     </div>
@@ -120,7 +120,7 @@ const FAQSection = () => {
                       transition={{ duration: 0.3 }}
                       className="flex-shrink-0 ml-2 sm:ml-4"
                     >
-                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#785546] group-hover:text-[#634031] transition-colors duration-200" />
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#785546] group-hover:text-[#65302f] transition-colors duration-200" />
                     </motion.span>
                   </button>
                   
@@ -137,7 +137,7 @@ const FAQSection = () => {
                           <div className="relative">
                             {/* Decorative line */}
                             <div className="absolute -left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#e0c9c2] via-[#785546] to-[#e0c9c2]"></div>
-                            <p className="text-sm sm:text-base text-[#634031]/80 leading-relaxed sm:leading-loose">
+                            <p className="text-sm sm:text-base text-[#65302f]/80 leading-relaxed sm:leading-loose">
                               {faq.answer}
                             </p>
                           </div>
@@ -169,13 +169,13 @@ const FAQSection = () => {
                       <div className="flex items-start gap-3 sm:gap-4 flex-1">
                         {/* Number Indicator */}
                         <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-[#fff7f1] to-[#e0c9c2] rounded-full flex items-center justify-center shadow-sm">
-                          <span className="text-xs sm:text-sm font-bold text-[#634031]">
+                          <span className="text-xs sm:text-sm font-bold text-[#65302f]">
                             {adjustedIndex + 1}
                           </span>
                         </div>
                         
                         {/* Question */}
-                        <span className="text-sm sm:text-base md:text-lg font-semibold text-[#634031] group-hover:text-[#785546] transition-colors duration-200 pr-2 text-left">
+                        <span className="text-sm sm:text-base md:text-lg font-semibold text-[#65302f] group-hover:text-[#785546] transition-colors duration-200 pr-2 text-left">
                           {faq.question}
                         </span>
                       </div>
@@ -186,7 +186,7 @@ const FAQSection = () => {
                         transition={{ duration: 0.3 }}
                         className="flex-shrink-0 ml-2 sm:ml-4"
                       >
-                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#785546] group-hover:text-[#634031] transition-colors duration-200" />
+                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#785546] group-hover:text-[#65302f] transition-colors duration-200" />
                       </motion.span>
                     </button>
                     
@@ -203,7 +203,7 @@ const FAQSection = () => {
                             <div className="relative">
                               {/* Decorative line */}
                               <div className="absolute -left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#e0c9c2] via-[#785546] to-[#e0c9c2]"></div>
-                              <p className="text-sm sm:text-base text-[#634031]/80 leading-relaxed sm:leading-loose">
+                              <p className="text-sm sm:text-base text-[#65302f]/80 leading-relaxed sm:leading-loose">
                                 {faq.answer}
                               </p>
                             </div>
@@ -234,13 +234,13 @@ const FAQSection = () => {
                     <div className="flex items-start gap-3 sm:gap-4 flex-1">
                       {/* Number Indicator */}
                       <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-[#fff7f1] to-[#e0c9c2] rounded-full flex items-center justify-center shadow-sm">
-                        <span className="text-xs sm:text-sm font-bold text-[#634031]">
+                        <span className="text-xs sm:text-sm font-bold text-[#65302f]">
                           {index + 1}
                         </span>
                       </div>
                       
                       {/* Question */}
-                      <span className="text-sm sm:text-base md:text-lg font-semibold text-[#634031] group-hover:text-[#785546] transition-colors duration-200 pr-2 text-left">
+                      <span className="text-sm sm:text-base md:text-lg font-semibold text-[#65302f] group-hover:text-[#785546] transition-colors duration-200 pr-2 text-left">
                         {faq.question}
                       </span>
                     </div>
@@ -251,7 +251,7 @@ const FAQSection = () => {
                       transition={{ duration: 0.3 }}
                       className="flex-shrink-0 ml-2 sm:ml-4"
                     >
-                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#785546] group-hover:text-[#634031] transition-colors duration-200" />
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-[#785546] group-hover:text-[#65302f] transition-colors duration-200" />
                     </motion.span>
                   </button>
                   
@@ -268,7 +268,7 @@ const FAQSection = () => {
                           <div className="relative">
                             {/* Decorative line */}
                             <div className="absolute -left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#e0c9c2] via-[#785546] to-[#e0c9c2]"></div>
-                            <p className="text-sm sm:text-base text-[#634031]/80 leading-relaxed sm:leading-loose">
+                            <p className="text-sm sm:text-base text-[#65302f]/80 leading-relaxed sm:leading-loose">
                               {faq.answer}
                             </p>
                           </div>
@@ -290,7 +290,7 @@ const FAQSection = () => {
             className="text-center mt-10 sm:mt-10 md:mt-10 lg:mt-12"
           >
             <div className="max-w-2xl mx-auto p-6 sm:p-8 md:p-10 bg-gradient-to-br from-[#fff7f1] to-[#f5e9e0] rounded-2xl sm:rounded-3xl shadow-lg border border-[#e0c9c2]">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#634031] mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#65302f] mb-3 sm:mb-4">
                 Still have questions?
               </h3>
               <p className="text-sm sm:text-base md:text-lg text-[#785546] mb-6 sm:mb-8">
@@ -299,12 +299,12 @@ const FAQSection = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={handleOpenForm}
-                  className="bg-gradient-to-r from-[#634031] to-[#785546] hover:from-[#503225] hover:to-[#634031] text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="bg-gradient-to-r from-[#65302f] to-[#785546] hover:from-[#503225] hover:to-[#65302f] text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Book a Free Consultation
                 </button>
                 <a href="tel: +91 80561 33033">
-                <button className="bg-white hover:bg-[#fff7f1] text-[#634031] font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl border-2 border-[#e0c9c2] hover:border-[#785546] text-sm sm:text-base transition-all duration-300 shadow-sm hover:shadow-md">
+                <button className="bg-white hover:bg-[#fff7f1] text-[#65302f] font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl border-2 border-[#e0c9c2] hover:border-[#785546] text-sm sm:text-base transition-all duration-300 shadow-sm hover:shadow-md">
                   Call +91 80561 33033
                 </button>
                 </a>
