@@ -9,6 +9,7 @@ import DentalCareSection from "@/components/logoslider";
 import WhyChooseSection from "@/components/video";
 import TestimonialsSection from "@/components/offer-highlight";
 import DoctorSection from "@/components/results-section";
+import RealPatientResultsSection from "@/components/certification";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         <section id="why">
           <WhyChooseSection />
         </section>
-
+<RealPatientResultsSection />
         <section id="services">
           <StudentSuccess />
         </section>
