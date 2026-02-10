@@ -111,7 +111,7 @@ export default function HeroSection() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="w-full max-w-sm bg-gradient-to-b from-[#fff7f1] to-[#e0c9c2] rounded-2xl p-6 shadow-2xl border border-[#e0c9c2]"
+              className="w-full max-w-sm bg-[#65302f] rounded-2xl p-6 shadow-2xl border border-[#e0c9c2]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col items-center text-center space-y-6">
@@ -134,7 +134,7 @@ export default function HeroSection() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-2xl font-bold text-[#785546]"
+                  className="text-2xl font-bold text-white"
                 >
                   Book Your Appointment Now
                 </motion.h2>
@@ -143,7 +143,7 @@ export default function HeroSection() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="text-lg font-medium text-[#785546]"
+                  className="text-lg font-medium text-white"
                 >
                   Get a Consultation Today!
                 </motion.p>
