@@ -332,7 +332,7 @@ export default function HeroSection() {
               >
                 <p className={`${
                   isMobile 
-                    ? "text-sm text-[#fff7f1] px-2 py-2" 
+                    ? "text-sm max-[470px]:text-center text-[#fff7f1] px-2 py-2" 
                     : "text-sm sm:text-base md:text-lg font-bold text-[#fff7f1] leading-snug px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3"
                 } relative z-10 inline-block`}>
                   <span className="hidden sm:inline">▪</span> Dermatologist-led hair care trusted by actors and directors{" "}
