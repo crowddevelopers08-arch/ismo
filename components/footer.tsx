@@ -20,7 +20,7 @@ const Footer = () => {
       title: 'Treatments',
       links: [
         { label: 'QR 678 Therapy', href: '#treatments' },
-        { label: 'PRP Treatment', href: '#treatments' },
+        // { label: 'PRP Treatment', href: '#treatments' },
         { label: 'GFC Therapy', href: '#treatments' },
         { label: 'Laser Therapy', href: '#treatments' },
       ],

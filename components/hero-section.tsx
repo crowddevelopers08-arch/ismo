@@ -165,7 +165,7 @@ export default function HeroSection() {
                   onClick={openConsultationForm}
                   className="w-full bg-[#785546] hover:bg-[#65302f] text-[#fff7f1] font-bold py-4 rounded-full transition-colors shadow-lg hover:scale-[1.02] active:scale-95"
                 >
-                  Book Your Consultation
+                  Book Your Hair Consultation Now
                 </motion.button>
 
                 <motion.button
@@ -388,7 +388,7 @@ export default function HeroSection() {
               className="bg-[#fff7f1] hover:bg-[#e0c9c2] text-[#785546] px-6 py-3 rounded-full font-semibold w-fit transition shadow-lg text-sm md:text-base hover:shadow-xl"
               onClick={openConsultationForm}
             >
-              Book Your Consultation
+              Book Your Hair Consultation Now
             </motion.button>
           </motion.div>
         </motion.div>
@@ -654,7 +654,7 @@ export default function HeroSection() {
                 className="bg-[#fff7f1] hover:bg-[#e0c9c2] text-[#785546] px-8 py-4 rounded-full font-semibold w-full max-w-sm transition shadow-lg text-lg"
                 onClick={openConsultationForm}
               >
-                Book Your Consultation
+                Book Your Hair Consultation Now
               </motion.button>
             </motion.div>
 

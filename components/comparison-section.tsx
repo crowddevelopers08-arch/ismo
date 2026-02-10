@@ -368,7 +368,7 @@ const HairCareSection = () => {
             Not sure which treatment suits you? Our doctors will recommend the right
             plan after a detailed hair consultation.
           </motion.p>
-          <motion.button
+          {/* <motion.button
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"
@@ -382,7 +382,7 @@ const HairCareSection = () => {
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
             />
             <span className="relative">GET FREE CONSULTATION</span>
-          </motion.button>
+          </motion.button> */}
         </motion.div>
       </motion.section>
     </>

@@ -301,7 +301,7 @@ const FAQSection = () => {
                   onClick={handleOpenForm}
                   className="bg-gradient-to-r from-[#65302f] to-[#785546] hover:from-[#503225] hover:to-[#65302f] text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
                 >
-                  Book a Free Consultation
+                  Book Your Consultation
                 </button>
                 <a href="tel: +91 80561 33033">
                 <button className="bg-white hover:bg-[#fff7f1] text-[#65302f] font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl border-2 border-[#e0c9c2] hover:border-[#785546] text-sm sm:text-base transition-all duration-300 shadow-sm hover:shadow-md">
