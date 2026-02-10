@@ -173,7 +173,7 @@ export default function HeroSection() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.6 }}
                   onClick={() => setShowMobileMenu(false)}
-                  className="mt-4 text-sm text-[#785546] underline hover:text-[#fff7f1] transition-colors"
+                  className="mt-4 text-sm text-white underline hover:text-[#fff7f1] transition-colors"
                 >
                   Close
                 </motion.button>
