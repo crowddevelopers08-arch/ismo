@@ -399,7 +399,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative flex flex-col items-center justify-center gap-8 sm:gap-12 md:gap-56 pt-[60px] max-[470px]:pt-[55px] w-full md:w-auto mt-4 md:mt-0"
+            className="relative flex flex-col items-center justify-center gap-8 sm:gap-12 md:gap-40 max-[470px]:pt-[55px] w-full md:w-auto mt-4 md:mt-0"
           >
             {/* Rating Box */}
             <motion.div 
@@ -407,7 +407,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               whileHover={{ y: -5 }}
-              className="relative max-[470px]:mt-80 bg-gradient-to-br from-[#fff7f1] to-[#f5e9e0] backdrop-blur-sm rounded-2xl px-5 py-4 md:px-7 md:py-5 shadow-xl flex flex-col items-center gap-3 border border-[#e0c9c2]/50 max-w-xs sm:max-w-sm mx-auto overflow-hidden"
+              className="relative max-[470px]:mt-80 mt-10 bg-gradient-to-br from-[#fff7f1] to-[#f5e9e0] backdrop-blur-sm rounded-2xl px-5 py-4 md:px-7 md:py-5 shadow-xl flex flex-col items-center gap-3 border border-[#e0c9c2]/50 max-w-xs sm:max-w-sm mx-auto overflow-hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#65302f] via-[#785546] to-[#e0c9c2]"></div>
               
@@ -416,7 +416,7 @@ export default function HeroSection() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.6, type: "spring" }}
-                className="absolute -top-2 right-4 z-50 bg-gradient-to-r from-[#65302f] to-[#785546] text-white px-3 py-1 rounded-full shadow-lg"
+                className="absolute -top-2 right-4 bg-gradient-to-r from-[#65302f] to-[#785546] text-white px-3 py-1 rounded-full shadow-lg"
               >
                 <span className="text-xs font-bold tracking-wide">HURRY</span>
               </motion.div>
