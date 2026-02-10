@@ -82,7 +82,7 @@ export default function RealPatientResultsSection() {
   return (
     <section className="w-full" style={{ backgroundColor: "#65302f" }}>
       <div className="mx-auto max-w-7xl px-6 py-10">
-        <p className="text-center text-2xl md:text-4xl font-extrabold tracking-tight text-white mb-10">
+        <p className="text-center text-2xl md:text-4xl font-extrabold tracking-tight text-white max-[470px]:mb-6 mb-10">
           Real Patient, Real Results
         </p>
  
@@ -96,7 +96,7 @@ export default function RealPatientResultsSection() {
         {/* Mobile Carousel View */}
         <div className="mobile-view mt-10" style={{ display: 'none' }}>
           {/* Carousel with Side Arrows */}
-          <div className="relative flex items-center justify-center gap-4">
+          <div className="relative flex items-center justify-center max-[470px]:gap-0 gap-4">
             {/* Left Arrow */}
             <button
               onClick={prevSlide}
