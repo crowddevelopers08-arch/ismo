@@ -1,26 +1,18 @@
-// app/api/leads/route.ts
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 
-interface LeadData {
+interface ISMOLeadData {
   name: string
   phone: string
-  email?: string
-  procedure?: string
   treatment?: string
-  date?: string
-  time?: string
-  message?: string
-  city?: string
-  age?: string
-  preferredDate?: string
-  consent?: boolean
+  concern?: string
+  preferredDateTime?: string
   source?: string
   formName?: string
+  consent?: boolean
+  email?: string
+  procedure?: string
   concerns?: string
-  hairProblems?: string
-  pincode?: string
-  familyConsultation?: string
 }
 
 interface TelecrmResponse {
@@ -28,42 +20,31 @@ interface TelecrmResponse {
 }
 
 /**
- * Generate comprehensive form data string with all user details (for system notes)
+ * Generate form data string for TeleCRM system notes
  */
-function generateFormDataString(leadData: LeadData): string {
+function generateFormDataString(leadData: ISMOLeadData): string {
   const details: string[] = []
 
   if (leadData.name) details.push(`Name: ${leadData.name}`)
   if (leadData.phone) details.push(`Phone: ${leadData.phone}`)
   if (leadData.email) details.push(`Email: ${leadData.email}`)
-  if (leadData.procedure) details.push(`Procedure: ${leadData.procedure}`)
   if (leadData.treatment) details.push(`Treatment: ${leadData.treatment}`)
-  if (leadData.concerns) details.push(`Concerns: ${leadData.concerns}`)
-  if (leadData.hairProblems) details.push(`Hair Problems: ${leadData.hairProblems}`)
-  if (leadData.pincode) details.push(`Pincode: ${leadData.pincode}`)
-  if (leadData.date) details.push(`Date: ${leadData.date}`)
-  if (leadData.time) details.push(`Time: ${leadData.time}`)
-  if (leadData.preferredDate) details.push(`Preferred Date: ${leadData.preferredDate}`)
-  if (leadData.city) details.push(`City: ${leadData.city}`)
-  if (leadData.age) details.push(`Age: ${leadData.age}`)
+  if (leadData.concern) details.push(`Concern: ${leadData.concern}`)
+  if (leadData.preferredDateTime) details.push(`Preferred Time: ${leadData.preferredDateTime}`)
   if (leadData.source) details.push(`Source: ${leadData.source}`)
-  if (leadData.familyConsultation) details.push(`Family Consultation: ${leadData.familyConsultation}`)
+  if (leadData.procedure) details.push(`Procedure: ${leadData.procedure}`)
+  if (leadData.concerns) details.push(`Concerns: ${leadData.concerns}`)
 
   details.push(`Consent: ${leadData.consent ? "Yes" : "No"}`)
-
-  if (leadData.message) {
-    const messagePreview =
-      leadData.message.length > 100 ? `${leadData.message.substring(0, 100)}...` : leadData.message
-    details.push(`Message: ${messagePreview}`)
-  }
+  details.push(`Form: ${leadData.formName || "Hair Consultation Form"}`)
 
   return details.join(" | ")
 }
 
 /**
- * Send lead data to TeleCRM
+ * Send lead data to TeleCRM for ISMO Clinic
  */
-async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
+async function sendToTeleCRM(leadData: ISMOLeadData): Promise<TelecrmResponse> {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 15000) // 15s timeout
 
@@ -79,20 +60,21 @@ async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
 
   try {
     const formDataString = generateFormDataString(leadData)
-    const simpleFormName = leadData.formName || "Dental Consultation Form"
+    const simpleFormName = leadData.formName || "Hair Consultation Form"
 
+    // ISMO Clinic specific TeleCRM payload
     const telecrmPayload = {
       fields: {
         Id: "",
         name: leadData.name,
         email: leadData.email || "",
         phone: (leadData.phone || "").replace(/\D/g, ""),
-        city_1: leadData.city || "",
-        preferredtime: leadData.time || leadData.preferredDate || "",
-        preferreddate: leadData.date || leadData.preferredDate || "",
-        message: leadData.message || leadData.concerns || "",
-        select_the_procedure: leadData.procedure || leadData.treatment || leadData.concerns || "",
-        Country: "",
+        city_1: "Chennai", // ISMO is in Chennai
+        preferredtime: leadData.preferredDateTime || "",
+        preferreddate: "",
+        message: leadData.concern || leadData.concerns || "",
+        select_the_procedure: leadData.treatment || leadData.procedure || "",
+        Country: "India",
         LeadID: "",
         CreatedOn: new Date().toLocaleString("en-US", {
           month: "short",
@@ -104,40 +86,45 @@ async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
         }),
         "Lead Stage": "",
         "Lead Status": "new",
-        "Lead Request Type": "consultation",
-        PageName: leadData.source || "https://www.aloradentalwellnessbangalore.in/",
-        State: "",
-        Age: leadData.age || "",
+        "Lead Request Type": "hair_consultation",
+        PageName: leadData.source || "https://www.ismoskinclinicchennai.in/",
+        State: "Tamil Nadu",
+        Age: "",
         FormName: simpleFormName,
-        Pincode: leadData.pincode || "",
+        Pincode: "",
+        // ISMO specific fields
+        Treatment_Interested: leadData.treatment || "",
+        Hair_Concern: leadData.concern || "",
+        Clinic_Name: "ISMO Skin & Hair Clinic",
+        Clinic_Location: "Alwarpet, Chennai",
       },
       actions: [
         { type: "SYSTEM_NOTE", text: `Form Name: ${simpleFormName}` },
         { type: "SYSTEM_NOTE", text: `Complete Form Data: ${formDataString}` },
         {
           type: "SYSTEM_NOTE",
-          text: `Lead Source: ${leadData.source || "https://www.aloradentalwellnessbangalore.in/"}`,
+          text: `Lead Source: ${leadData.source || "https://www.ismoskinclinicchennai.in/"}`,
         },
-        { type: "SYSTEM_NOTE", text: `Concerns: ${leadData.concerns || "Not specified"}` },
-        {
-          type: "SYSTEM_NOTE",
-          text: `Dental Procedure: ${leadData.procedure || leadData.treatment || "Not specified"}`,
+        { 
+          type: "SYSTEM_NOTE", 
+          text: `Treatment Interested: ${leadData.treatment || "Not specified"}` 
         },
-        {
-          type: "SYSTEM_NOTE",
-          text: `Family Consultation: ${leadData.familyConsultation || "Not specified"}`,
-        },
-        { type: "SYSTEM_NOTE", text: `Pincode: ${leadData.pincode || "Not specified"}` },
-        {
-          type: "SYSTEM_NOTE",
-          text: `Procedure: ${leadData.procedure || leadData.treatment || "Not specified"}`,
+        { 
+          type: "SYSTEM_NOTE", 
+          text: `Hair Concern: ${leadData.concern || "Not specified"}` 
         },
         {
           type: "SYSTEM_NOTE",
-          text: `Preferred Date: ${leadData.date || leadData.preferredDate || "Not specified"}`,
+          text: `Preferred Appointment: ${leadData.preferredDateTime || "Not specified"}`,
         },
-        { type: "SYSTEM_NOTE", text: `Age: ${leadData.age || "Not specified"}` },
-        { type: "SYSTEM_NOTE", text: `Consent Given: ${leadData.consent ? "Yes" : "No"}` },
+        { 
+          type: "SYSTEM_NOTE", 
+          text: `Clinic: ISMO Skin & Hair Clinic - Alwarpet, Chennai` 
+        },
+        { 
+          type: "SYSTEM_NOTE", 
+          text: `Consent Given: ${leadData.consent ? "Yes" : "No"}` 
+        },
       ],
     }
 
@@ -146,7 +133,7 @@ async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.TELECRM_API_KEY}`,
-        "X-Client-ID": "nextjs-website-integration",
+        "X-Client-ID": "ismo-clinic-nextjs-integration",
         Accept: "application/json",
       },
       body: JSON.stringify(telecrmPayload),
@@ -160,12 +147,13 @@ async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
 
     const responseText = await response.text()
 
+    // Check for HTML response
     if (
       responseText.trim().startsWith("<!DOCTYPE") ||
       responseText.trim().startsWith("<html") ||
       responseText.includes("<!DOCTYPE html>")
     ) {
-      console.warn(`HTML response from ${endpoint}`, {
+      console.warn(`HTML response from TeleCRM endpoint`, {
         status: response.status,
         headers: Object.fromEntries(response.headers.entries()),
         bodyPreview: responseText.slice(0, 200),
@@ -176,12 +164,12 @@ async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
     try {
       const data = responseText ? JSON.parse(responseText) : {}
       if (!response.ok) {
-        throw new Error(data.message || `HTTP ${response.status} from ${endpoint}`)
+        throw new Error(data.message || `HTTP ${response.status} from TeleCRM`)
       }
       clearTimeout(timeout)
       return data
     } catch {
-      throw new Error(`Invalid JSON from ${endpoint}: ${responseText.slice(0, 100)}...`)
+      throw new Error(`Invalid JSON from TeleCRM: ${responseText.slice(0, 100)}...`)
     }
   } catch (error) {
     clearTimeout(timeout)
@@ -190,8 +178,7 @@ async function sendToTeleCRM(leadData: LeadData): Promise<TelecrmResponse> {
 }
 
 /**
- * GET /api/leads
- * Used by dashboard to fetch leads
+ * GET /api/leads - Fetch leads for dashboard
  */
 export async function GET(request: Request) {
   try {
@@ -235,57 +222,62 @@ export async function GET(request: Request) {
 }
 
 /**
- * POST /api/leads
- * Used by ConsultationForm
+ * POST /api/leads - Handle ISMO consultation form submission
  */
 export async function POST(request: Request) {
-  let data: LeadData
+  let leadData: ISMOLeadData
 
   try {
-    data = await request.json()
+    leadData = await request.json()
 
-    if (!data.name || !data.phone) {
+    // Validate required fields
+    if (!leadData.name || !leadData.phone) {
       return NextResponse.json(
-        { success: false, error: "Missing required fields: name, phone" },
+        { 
+          success: false, 
+          error: "Missing required fields: name and phone" 
+        },
         { status: 400 },
       )
     }
 
-    const simpleFormName = data.formName || "Dental Consultation Form"
+    const simpleFormName = leadData.formName || "Hair Consultation Form"
 
-    // Try TeleCRM, but don't lose the lead if TeleCRM fails
+    // Try TeleCRM sync
     let telecrmSynced = false
     let telecrmError: string | null = null
     let telecrmId: string | null = null
     let telecrmResponse: TelecrmResponse | null = null
 
     try {
-      const resp = await sendToTeleCRM(data)
+      const resp = await sendToTeleCRM(leadData)
       telecrmSynced = true
       telecrmResponse = resp
-      // Attempt to pick ID if TeleCRM sends it
-      telecrmId = (resp as any)?.data?.id ?? (resp as any)?.id ?? null
+      // Extract TeleCRM ID if available
+      telecrmId = (resp as any)?.data?.id ?? (resp as any)?.id ?? `tcrm_${Date.now()}`
     } catch (error) {
       telecrmSynced = false
       telecrmError = error instanceof Error ? error.message : "Unknown TeleCRM error"
       console.error("TeleCRM sync failed:", telecrmError)
+      // Don't fail the submission - continue to save to database
     }
 
-    // Store in Prisma regardless
+    // Store in Prisma database
     const createdLead = await prisma.lead.create({
       data: {
-        name: data.name,
-        phone: data.phone,
-        email: data.email ?? null,
-        course: data.procedure || data.treatment || null,
-        message: data.message || data.concerns || null,
-        source: data.source || "https://www.aloradentalwellnessbangalore.in/",
+        name: leadData.name,
+        phone: leadData.phone,
+        email: leadData.email ?? null,
+        treatment: leadData.treatment || leadData.procedure || null,
+        concern: leadData.concern || leadData.concerns || null,
+        preferredDateTime: leadData.preferredDateTime || null,
+        source: leadData.source || "https://www.ismoskinclinicchennai.in/",
         formName: simpleFormName,
-        consent: Boolean(data.consent ?? true),
+        consent: Boolean(leadData.consent ?? true),
         telecrmSynced,
         telecrmId,
         telecrmError,
-        // status & priority use defaults from schema
+        // status defaults to NEW, priority to MEDIUM
       },
     })
 
@@ -299,22 +291,22 @@ export async function POST(request: Request) {
           response: telecrmResponse,
         },
         message: telecrmSynced
-          ? "Dental consultation submitted successfully"
-          : "Consultation saved, but syncing to TeleCRM failed. Our team will follow up manually.",
+          ? "Your hair consultation has been booked successfully! Our team will contact you soon."
+          : "Consultation saved! Our team will contact you within 24 hours.",
         timestamp: new Date().toISOString(),
         formName: simpleFormName,
       },
       { status: 201 },
     )
   } catch (error) {
-    console.error("Dental lead submission error:", error)
+    console.error("ISMO lead submission error:", error)
 
     return NextResponse.json(
       {
         success: false,
-        error: "Failed to process dental consultation",
+        error: "Failed to process your consultation request",
         details: error instanceof Error ? error.message : "Unknown error",
-        referenceId: `ERR-${Date.now()}`,
+        referenceId: `ISMO_ERR_${Date.now()}`,
       },
       { status: 500 },
     )

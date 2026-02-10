@@ -1,4 +1,3 @@
-// app/dashboard/page.tsx
 "use client"
 
 import { useState, useEffect, Fragment } from "react"
@@ -32,7 +31,9 @@ interface Lead {
   name: string
   phone: string
   email?: string
-  course?: string
+  treatment?: string      // Changed from 'course' to 'treatment'
+  concern?: string        // ISMO specific field
+  preferredDateTime?: string  // ISMO specific field
   message?: string
   source?: string
   formName?: string
@@ -74,14 +75,14 @@ export default function LeadsTable({
   const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState<string>("all")
-  const [courseFilter, setCourseFilter] = useState<string>("all")
+  const [treatmentFilter, setTreatmentFilter] = useState<string>("all") // Changed from courseFilter
   const [dateFilter, setDateFilter] = useState<string>("all")
   const [formFilter, setFormFilter] = useState<string>("all")
   const [expandedLead, setExpandedLead] = useState<string | null>(null)
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: "asc" | "desc" } | null>(null)
   const [isClient, setIsClient] = useState(false)
 
-  // Set client-side flag (for date formatting)
+  // Set client-side flag
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -107,7 +108,7 @@ export default function LeadsTable({
     }
   }
 
-  // Update lead status (PATCH to /api/leads/[id])
+  // Update lead status
   const updateLeadStatus = async (leadId: string, newStatus: Lead["status"]) => {
     try {
       const response = await fetch(`/api/leads/${leadId}`, {
@@ -168,6 +169,7 @@ export default function LeadsTable({
     return String(value).toLowerCase()
   }
 
+  // Date range filter
   function isWithinDateRange(date: string, range: string): boolean {
     if (!date) return false
 
@@ -198,7 +200,8 @@ export default function LeadsTable({
       safeString(lead.name).includes(safeString(searchTerm)) ||
       safeString(lead.phone).includes(safeString(searchTerm)) ||
       safeString(lead.email).includes(safeString(searchTerm)) ||
-      safeString(lead.course).includes(safeString(searchTerm)) ||
+      safeString(lead.treatment).includes(safeString(searchTerm)) ||  // Changed from course
+      safeString(lead.concern).includes(safeString(searchTerm)) ||    // ISMO specific
       safeString(lead.message).includes(safeString(searchTerm)) ||
       safeString(lead.formName).includes(safeString(searchTerm))
 
@@ -206,152 +209,31 @@ export default function LeadsTable({
       statusFilter === "all" ||
       lead.status === (statusFilter.toUpperCase() as Lead["status"])
 
-    const matchesCourse = courseFilter === "all" || lead.course === courseFilter
+    const matchesTreatment = treatmentFilter === "all" || lead.treatment === treatmentFilter // Changed
     const matchesDate = dateFilter === "all" || isWithinDateRange(lead.createdAt, dateFilter)
     const matchesForm = formFilter === "all" || lead.formName === formFilter
 
-    return matchesSearch && matchesStatus && matchesCourse && matchesDate && matchesForm
+    return matchesSearch && matchesStatus && matchesTreatment && matchesDate && matchesForm
   })
 
-  const getStatusBadge = (status: Lead["status"]) => {
-    const statusConfig: Record<
-      Lead["status"],
-      { label: string; color: string }
-    > = {
-      NEW: { label: "New", color: "bg-blue-100 text-blue-800 border-blue-200" },
-      CONTACTED: {
-        label: "Contacted",
-        color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-      },
-      SCHEDULED: {
-        label: "Scheduled",
-        color: "bg-purple-100 text-purple-800 border-purple-200",
-      },
-      CONVERTED: {
-        label: "Converted",
-        color: "bg-green-100 text-green-800 border-green-200",
-      },
-      LOST: { label: "Lost", color: "bg-red-100 text-red-800 border-red-200" },
-      INVALID: {
-        label: "Invalid",
-        color: "bg-gray-100 text-gray-700 border-gray-200",
-      },
-    }
-
-    const config = statusConfig[status]
-    return (
-      <Badge variant="outline" className={`${config.color} border`}>
-        {config.label}
-      </Badge>
-    )
-  }
-
-  const getPriorityBadge = (priority: Lead["priority"]) => {
-    const priorityConfig: Record<
-      Lead["priority"],
-      { label: string; color: string }
-    > = {
-      LOW: { label: "Low", color: "bg-gray-100 text-gray-800 border-gray-200" },
-      MEDIUM: {
-        label: "Medium",
-        color: "bg-blue-100 text-blue-800 border-blue-200",
-      },
-      HIGH: {
-        label: "High",
-        color: "bg-orange-100 text-orange-800 border-orange-200",
-      },
-      URGENT: {
-        label: "Urgent",
-        color: "bg-red-100 text-red-800 border-red-200",
-      },
-    }
-
-    const config = priorityConfig[priority]
-    return (
-      <Badge variant="outline" className={`${config.color} border text-xs`}>
-        {config.label}
-      </Badge>
-    )
-  }
-
-  const getFormBadge = (formName?: string) => {
-    if (!formName) {
-      return (
-        <Badge
-          variant="outline"
-          className="bg-gray-100 text-gray-800 border-gray-200 text-xs"
-        >
-          Unknown
-        </Badge>
-      )
-    }
-
-    const formConfig: { [key: string]: { label: string; color: string } } = {
-      "elite form lp": {
-        label: "Elite Form LP",
-        color: "bg-purple-100 text-purple-800 border-purple-200",
-      },
-      "course application form": {
-        label: "Course Application",
-        color: "bg-blue-100 text-blue-800 border-blue-200",
-      },
-      default: {
-        label: formName,
-        color: "bg-gray-100 text-gray-800 border-gray-200",
-      },
-    }
-
-    const config = formConfig[formName.toLowerCase()] || formConfig.default
-    return (
-      <Badge variant="outline" className={`${config.color} border text-xs`}>
-        {config.label}
-      </Badge>
-    )
-  }
-
-  const getTelecrmBadge = (synced: boolean, error?: string) => {
-    if (error) {
-      return (
-        <Badge
-          variant="outline"
-          className="bg-red-100 text-red-800 border-red-200"
-        >
-          Failed
-        </Badge>
-      )
-    }
-    return synced ? (
-      <Badge className="bg-green-100 text-green-800 border-green-200">
-        Synced
-      </Badge>
-    ) : (
-      <Badge
-        variant="outline"
-        className="bg-yellow-100 text-yellow-800 border-yellow-200"
-      >
-        Pending
-      </Badge>
-    )
-  }
+  // Get unique treatments for filter (ISMO specific)
+  const uniqueTreatments = Array.from(
+    new Set(leads.map((lead) => lead.treatment).filter(Boolean)),
+  ) as string[]
 
   // Get unique form names for filter
   const uniqueFormNames = Array.from(
     new Set(leads.map((lead) => lead.formName).filter(Boolean)),
   ) as string[]
 
-  // Get unique courses for filter
-  const uniqueCourses = Array.from(
-    new Set(leads.map((lead) => lead.course).filter(Boolean)),
-  ) as string[]
-
-  // Form statistics
+  // Form statistics for ISMO
   const getFormStats = () => {
     const stats: {
       [key: string]: { total: number; new: number; converted: number; synced: number }
     } = {}
 
     leads.forEach((lead) => {
-      const formName = lead.formName || "Unknown"
+      const formName = lead.formName || "Hair Consultation Form"
       if (!stats[formName]) {
         stats[formName] = { total: 0, new: 0, converted: 0, synced: 0 }
       }
@@ -367,13 +249,15 @@ export default function LeadsTable({
 
   const formStats = getFormStats()
 
+  // Export to CSV for ISMO leads
   const exportToCSV = () => {
     const headers = [
       "Name",
       "Phone",
       "Email",
-      "Course",
-      "Message",
+      "Treatment Interested",  // Changed from Course
+      "Hair Concern",          // ISMO specific
+      "Preferred Time",        // ISMO specific
       "Status",
       "Priority",
       "Form Name",
@@ -384,12 +268,14 @@ export default function LeadsTable({
       "Created At",
       "Updated At",
     ]
+    
     const csvData = filteredLeads.map((lead) => [
       lead.name || "",
       lead.phone || "",
       lead.email || "",
-      lead.course || "",
-      `"${(lead.message || "").replace(/"/g, '""')}"`,
+      lead.treatment || "",              // Changed from course
+      lead.concern || "",               // ISMO specific
+      lead.preferredDateTime || "",     // ISMO specific
       lead.status || "",
       lead.priority || "",
       lead.formName || "",
@@ -411,11 +297,94 @@ export default function LeadsTable({
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    a.download = `leads-${new Date().toISOString().split("T")[0]}.csv`
+    a.download = `ismo-leads-${new Date().toISOString().split("T")[0]}.csv`
     a.click()
     window.URL.revokeObjectURL(url)
   }
 
+  // Helper functions for UI components
+  const getStatusBadge = (status: Lead["status"]) => {
+    const statusConfig: Record<Lead["status"], { label: string; color: string }> = {
+      NEW: { label: "New", color: "bg-blue-100 text-blue-800 border-blue-200" },
+      CONTACTED: { label: "Contacted", color: "bg-yellow-100 text-yellow-800 border-yellow-200" },
+      SCHEDULED: { label: "Scheduled", color: "bg-purple-100 text-purple-800 border-purple-200" },
+      CONVERTED: { label: "Converted", color: "bg-green-100 text-green-800 border-green-200" },
+      LOST: { label: "Lost", color: "bg-red-100 text-red-800 border-red-200" },
+      INVALID: { label: "Invalid", color: "bg-gray-100 text-gray-700 border-gray-200" },
+    }
+
+    const config = statusConfig[status]
+    return (
+      <Badge variant="outline" className={`${config.color} border`}>
+        {config.label}
+      </Badge>
+    )
+  }
+
+  const getPriorityBadge = (priority: Lead["priority"]) => {
+    const priorityConfig: Record<Lead["priority"], { label: string; color: string }> = {
+      LOW: { label: "Low", color: "bg-gray-100 text-gray-800 border-gray-200" },
+      MEDIUM: { label: "Medium", color: "bg-blue-100 text-blue-800 border-blue-200" },
+      HIGH: { label: "High", color: "bg-orange-100 text-orange-800 border-orange-200" },
+      URGENT: { label: "Urgent", color: "bg-red-100 text-red-800 border-red-200" },
+    }
+
+    const config = priorityConfig[priority]
+    return (
+      <Badge variant="outline" className={`${config.color} border text-xs`}>
+        {config.label}
+      </Badge>
+    )
+  }
+
+  const getFormBadge = (formName?: string) => {
+    if (!formName) {
+      return (
+        <Badge variant="outline" className="bg-gray-100 text-gray-800 border-gray-200 text-xs">
+          Hair Consultation
+        </Badge>
+      )
+    }
+
+    const formConfig: { [key: string]: { label: string; color: string } } = {
+      "hair consultation form": {
+        label: "Hair Consultation",
+        color: "bg-purple-100 text-purple-800 border-purple-200",
+      },
+      default: {
+        label: formName,
+        color: "bg-gray-100 text-gray-800 border-gray-200",
+      },
+    }
+
+    const config = formConfig[formName.toLowerCase()] || formConfig.default
+    return (
+      <Badge variant="outline" className={`${config.color} border text-xs`}>
+        {config.label}
+      </Badge>
+    )
+  }
+
+  const getTelecrmBadge = (synced: boolean, error?: string) => {
+    if (error) {
+      return (
+        <Badge variant="outline" className="bg-red-100 text-red-800 border-red-200">
+          Failed
+        </Badge>
+      )
+    }
+    return synced ? (
+      <Badge className="bg-green-100 text-green-800 border-green-200">
+        Synced
+      </Badge>
+    ) : (
+      <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-200">
+        Pending
+      </Badge>
+    )
+  }
+
+  // Action handlers
   const handleCall = (phone: string) => {
     if (phone) {
       window.open(`tel:${phone}`, "_self")
@@ -431,8 +400,7 @@ export default function LeadsTable({
   const handleSort = (key: string) => {
     setSortConfig((current) => ({
       key,
-      direction:
-        current?.key === key && current.direction === "asc" ? "desc" : "asc",
+      direction: current?.key === key && current.direction === "asc" ? "desc" : "asc",
     }))
   }
 
@@ -465,10 +433,10 @@ export default function LeadsTable({
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <CardTitle className="text-2xl font-bold text-gray-900">
-                Leads Management
+                ISMO Clinic Leads Management
               </CardTitle>
               <CardDescription className="text-gray-600">
-                Manage and track all leads from application forms
+                Manage and track all hair consultation leads
                 {autoRefresh && (
                   <span className="ml-2 text-xs text-green-600">
                     • Auto-refresh enabled
@@ -483,9 +451,7 @@ export default function LeadsTable({
                 disabled={loading}
                 className="flex items-center gap-2 border-gray-300 text-gray-700 hover:bg-gray-50"
               >
-                <RefreshCw
-                  className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
-                />
+                <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
                 {loading ? "Refreshing..." : "Refresh"}
               </Button>
               <Button
@@ -503,20 +469,13 @@ export default function LeadsTable({
           {/* Form Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {Object.entries(formStats).map(([formName, stats]) => (
-              <Card
-                key={formName}
-                className="p-4 bg-white border-gray-200 shadow-sm"
-              >
+              <Card key={formName} className="p-4 bg-white border-gray-200 shadow-sm">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <FileText className="h-4 w-4 text-blue-600" />
                       <span className="font-medium text-sm text-gray-900 capitalize">
-                        {formName === "elite form lp"
-                          ? "Elite Form LP"
-                          : formName === "Unknown"
-                          ? "Unknown Form"
-                          : formName}
+                        {formName === "hair consultation form" ? "Hair Consultations" : formName}
                       </span>
                     </div>
                     <div className="text-2xl font-bold text-gray-900">
@@ -526,21 +485,15 @@ export default function LeadsTable({
                   <div className="text-right text-xs space-y-1">
                     <div className="flex items-center gap-1 justify-end">
                       <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                      <span className="text-gray-600">
-                        New: {stats.new}
-                      </span>
+                      <span className="text-gray-600">New: {stats.new}</span>
                     </div>
                     <div className="flex items-center gap-1 justify-end">
                       <div className="w-2 h-2 bg-green-500 rounded-full" />
-                      <span className="text-gray-600">
-                        Converted: {stats.converted}
-                      </span>
+                      <span className="text-gray-600">Converted: {stats.converted}</span>
                     </div>
                     <div className="flex items-center gap-1 justify-end">
                       <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                      <span className="text-gray-600">
-                        Synced: {stats.synced}
-                      </span>
+                      <span className="text-gray-600">Synced: {stats.synced}</span>
                     </div>
                   </div>
                 </div>
@@ -554,7 +507,7 @@ export default function LeadsTable({
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-500" />
                 <Input
-                  placeholder="Search by name, phone, email, course, form..."
+                  placeholder="Search by name, phone, email, treatment, concern..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10 bg-white border-gray-300 text-gray-900 placeholder:text-gray-500"
@@ -568,45 +521,25 @@ export default function LeadsTable({
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent className="bg-white border-gray-300 text-gray-900">
-                <SelectItem value="all" className="focus:bg-gray-100">
-                  All Status
-                </SelectItem>
-                <SelectItem value="new" className="focus:bg-gray-100">
-                  New
-                </SelectItem>
-                <SelectItem value="contacted" className="focus:bg-gray-100">
-                  Contacted
-                </SelectItem>
-                <SelectItem value="scheduled" className="focus:bg-gray-100">
-                  Scheduled
-                </SelectItem>
-                <SelectItem value="converted" className="focus:bg-gray-100">
-                  Converted
-                </SelectItem>
-                <SelectItem value="lost" className="focus:bg-gray-100">
-                  Lost
-                </SelectItem>
-                <SelectItem value="invalid" className="focus:bg-gray-100">
-                  Invalid
-                </SelectItem>
+                <SelectItem value="all" className="focus:bg-gray-100">All Status</SelectItem>
+                <SelectItem value="new" className="focus:bg-gray-100">New</SelectItem>
+                <SelectItem value="contacted" className="focus:bg-gray-100">Contacted</SelectItem>
+                <SelectItem value="scheduled" className="focus:bg-gray-100">Scheduled</SelectItem>
+                <SelectItem value="converted" className="focus:bg-gray-100">Converted</SelectItem>
+                <SelectItem value="lost" className="focus:bg-gray-100">Lost</SelectItem>
+                <SelectItem value="invalid" className="focus:bg-gray-100">Invalid</SelectItem>
               </SelectContent>
             </Select>
 
-            <Select value={courseFilter} onValueChange={setCourseFilter}>
+            <Select value={treatmentFilter} onValueChange={setTreatmentFilter}>
               <SelectTrigger className="bg-white border-gray-300 text-gray-900">
-                <SelectValue placeholder="Course" />
+                <SelectValue placeholder="Treatment" />
               </SelectTrigger>
               <SelectContent className="bg-white border-gray-300 text-gray-900">
-                <SelectItem value="all" className="focus:bg-gray-100">
-                  All Courses
-                </SelectItem>
-                {uniqueCourses.map((course) => (
-                  <SelectItem
-                    key={course}
-                    value={course}
-                    className="focus:bg-gray-100"
-                  >
-                    {course}
+                <SelectItem value="all" className="focus:bg-gray-100">All Treatments</SelectItem>
+                {uniqueTreatments.map((treatment) => (
+                  <SelectItem key={treatment} value={treatment} className="focus:bg-gray-100">
+                    {treatment}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -618,16 +551,10 @@ export default function LeadsTable({
                 <SelectValue placeholder="Form" />
               </SelectTrigger>
               <SelectContent className="bg-white border-gray-300 text-gray-900">
-                <SelectItem value="all" className="focus:bg-gray-100">
-                  All Forms
-                </SelectItem>
+                <SelectItem value="all" className="focus:bg-gray-100">All Forms</SelectItem>
                 {uniqueFormNames.map((formName) => (
-                  <SelectItem
-                    key={formName}
-                    value={formName}
-                    className="focus:bg-gray-100"
-                  >
-                    {formName === "elite form lp" ? "Elite Form LP" : formName}
+                  <SelectItem key={formName} value={formName} className="focus:bg-gray-100">
+                    {formName === "hair consultation form" ? "Hair Consultation" : formName}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -639,18 +566,10 @@ export default function LeadsTable({
                 <SelectValue placeholder="Date" />
               </SelectTrigger>
               <SelectContent className="bg-white border-gray-300 text-gray-900">
-                <SelectItem value="all" className="focus:bg-gray-100">
-                  All Time
-                </SelectItem>
-                <SelectItem value="today" className="focus:bg-gray-100">
-                  Today
-                </SelectItem>
-                <SelectItem value="week" className="focus:bg-gray-100">
-                  This Week
-                </SelectItem>
-                <SelectItem value="month" className="focus:bg-gray-100">
-                  This Month
-                </SelectItem>
+                <SelectItem value="all" className="focus:bg-gray-100">All Time</SelectItem>
+                <SelectItem value="today" className="focus:bg-gray-100">Today</SelectItem>
+                <SelectItem value="week" className="focus:bg-gray-100">This Week</SelectItem>
+                <SelectItem value="month" className="focus:bg-gray-100">This Month</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -661,61 +580,30 @@ export default function LeadsTable({
               <table className="w-full caption-bottom text-sm">
                 <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th
-                      className="h-12 px-4 text-left align-middle font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
-                      onClick={() => handleSort("name")}
-                    >
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleSort("name")}>
                       <div className="flex items-center gap-1">
                         Name
-                        {sortConfig?.key === "name" &&
-                          (sortConfig.direction === "asc" ? (
-                            <ChevronUp className="h-4 w-4" />
-                          ) : (
-                            <ChevronDown className="h-4 w-4" />
-                          ))}
+                        {sortConfig?.key === "name" && (sortConfig.direction === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />)}
                       </div>
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">
-                      Contact
-                    </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">
-                      Course &amp; Priority
-                    </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">
-                      Form
-                    </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">
-                      Status
-                    </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">
-                      Sync
-                    </th>
-                    <th
-                      className="h-12 px-4 text-left align-middle font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors"
-                      onClick={() => handleSort("createdAt")}
-                    >
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">Contact</th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">Treatment & Concern</th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">Form</th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">Status</th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">Sync</th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700 cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleSort("createdAt")}>
                       <div className="flex items-center gap-1">
                         Date
-                        {sortConfig?.key === "createdAt" &&
-                          (sortConfig.direction === "asc" ? (
-                            <ChevronUp className="h-4 w-4" />
-                          ) : (
-                            <ChevronDown className="h-4 w-4" />
-                          ))}
+                        {sortConfig?.key === "createdAt" && (sortConfig.direction === "asc" ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />)}
                       </div>
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">
-                      Actions
-                    </th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-gray-700">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {loading ? (
                     <tr>
-                      <td
-                        colSpan={8}
-                        className="p-8 text-center text-gray-500"
-                      >
+                      <td colSpan={8} className="p-8 text-center text-gray-500">
                         <div className="flex items-center justify-center gap-2">
                           <RefreshCw className="h-4 w-4 animate-spin" />
                           Loading leads...
@@ -724,10 +612,7 @@ export default function LeadsTable({
                     </tr>
                   ) : filteredLeads.length === 0 ? (
                     <tr>
-                      <td
-                        colSpan={8}
-                        className="p-8 text-center text-gray-500"
-                      >
+                      <td colSpan={8} className="p-8 text-center text-gray-500">
                         No leads found matching your criteria
                       </td>
                     </tr>
@@ -736,27 +621,10 @@ export default function LeadsTable({
                       const formattedDate = formatDate(lead.createdAt)
                       return (
                         <Fragment key={lead.id}>
-                          <tr
-                            className="border-b border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer"
-                            onClick={() => toggleLeadExpansion(lead.id)}
-                          >
+                          <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer" onClick={() => toggleLeadExpansion(lead.id)}>
                             <td className="p-4 align-middle font-medium text-gray-900">
                               <div className="flex items-center gap-2">
-                                <div
-                                  className={`w-2 h-2 rounded-full ${
-                                    lead.status === "NEW"
-                                      ? "bg-blue-500"
-                                      : lead.status === "CONTACTED"
-                                      ? "bg-yellow-500"
-                                      : lead.status === "SCHEDULED"
-                                      ? "bg-purple-500"
-                                      : lead.status === "CONVERTED"
-                                      ? "bg-green-500"
-                                      : lead.status === "INVALID"
-                                      ? "bg-gray-500"
-                                      : "bg-red-500"
-                                  }`}
-                                />
+                                <div className={`w-2 h-2 rounded-full ${lead.status === "NEW" ? "bg-blue-500" : lead.status === "CONTACTED" ? "bg-yellow-500" : lead.status === "SCHEDULED" ? "bg-purple-500" : lead.status === "CONVERTED" ? "bg-green-500" : lead.status === "INVALID" ? "bg-gray-500" : "bg-red-500"}`} />
                                 {lead.name || "Unknown"}
                               </div>
                             </td>
@@ -764,16 +632,12 @@ export default function LeadsTable({
                               <div className="flex flex-col gap-1">
                                 <div className="flex items-center gap-2">
                                   <Phone className="h-3 w-3 text-blue-600" />
-                                  <span className="text-sm text-gray-700">
-                                    {lead.phone || "No phone"}
-                                  </span>
+                                  <span className="text-sm text-gray-700">{lead.phone || "No phone"}</span>
                                 </div>
                                 {lead.email && (
                                   <div className="flex items-center gap-2">
                                     <Mail className="h-3 w-3 text-blue-600" />
-                                    <span className="text-sm text-gray-700 truncate max-w-[120px]">
-                                      {lead.email}
-                                    </span>
+                                    <span className="text-sm text-gray-700 truncate max-w-[120px]">{lead.email}</span>
                                   </div>
                                 )}
                               </div>
@@ -781,8 +645,13 @@ export default function LeadsTable({
                             <td className="p-4 align-middle">
                               <div className="flex flex-col gap-1">
                                 <span className="text-sm font-medium text-gray-900">
-                                  {lead.course || "Not specified"}
+                                  {lead.treatment || "Not specified"}
                                 </span>
+                                {lead.concern && (
+                                  <span className="text-xs text-gray-600">
+                                    Concern: {lead.concern}
+                                  </span>
+                                )}
                                 <div className="mt-1">
                                   {getPriorityBadge(lead.priority)}
                                 </div>
@@ -799,106 +668,35 @@ export default function LeadsTable({
                                   </div>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className="bg-white border-gray-200 text-gray-900">
-                                  <DropdownMenuItem
-                                    className="focus:bg-gray-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      updateLeadStatus(lead.id, "NEW")
-                                    }}
-                                  >
-                                    New
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="focus:bg-gray-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      updateLeadStatus(lead.id, "CONTACTED")
-                                    }}
-                                  >
-                                    Contacted
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="focus:bg-gray-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      updateLeadStatus(lead.id, "SCHEDULED")
-                                    }}
-                                  >
-                                    Scheduled
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="focus:bg-gray-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      updateLeadStatus(lead.id, "CONVERTED")
-                                    }}
-                                  >
-                                    Converted
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="focus:bg-gray-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      updateLeadStatus(lead.id, "LOST")
-                                    }}
-                                  >
-                                    Lost
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem
-                                    className="focus:bg-gray-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      updateLeadStatus(lead.id, "INVALID")
-                                    }}
-                                  >
-                                    Invalid
-                                  </DropdownMenuItem>
+                                  <DropdownMenuItem className="focus:bg-gray-100" onClick={(e) => { e.stopPropagation(); updateLeadStatus(lead.id, "NEW") }}>New</DropdownMenuItem>
+                                  <DropdownMenuItem className="focus:bg-gray-100" onClick={(e) => { e.stopPropagation(); updateLeadStatus(lead.id, "CONTACTED") }}>Contacted</DropdownMenuItem>
+                                  <DropdownMenuItem className="focus:bg-gray-100" onClick={(e) => { e.stopPropagation(); updateLeadStatus(lead.id, "SCHEDULED") }}>Scheduled</DropdownMenuItem>
+                                  <DropdownMenuItem className="focus:bg-gray-100" onClick={(e) => { e.stopPropagation(); updateLeadStatus(lead.id, "CONVERTED") }}>Converted</DropdownMenuItem>
+                                  <DropdownMenuItem className="focus:bg-gray-100" onClick={(e) => { e.stopPropagation(); updateLeadStatus(lead.id, "LOST") }}>Lost</DropdownMenuItem>
+                                  <DropdownMenuItem className="focus:bg-gray-100" onClick={(e) => { e.stopPropagation(); updateLeadStatus(lead.id, "INVALID") }}>Invalid</DropdownMenuItem>
                                 </DropdownMenuContent>
                               </DropdownMenu>
                             </td>
                             <td className="p-4 align-middle">
-                              {getTelecrmBadge(
-                                lead.telecrmSynced,
-                                lead.telecrmError,
+                              {getTelecrmBadge(lead.telecrmSynced, lead.telecrmError)}
+                              {lead.telecrmId && lead.telecrmId !== "unknown" && (
+                                <div className="text-xs text-gray-500 mt-1 truncate max-w-[80px]">
+                                  ID: {lead.telecrmId}
+                                </div>
                               )}
-                              {lead.telecrmId &&
-                                lead.telecrmId !== "unknown" && (
-                                  <div className="text-xs text-gray-500 mt-1 truncate max-w-[80px]">
-                                    ID: {lead.telecrmId}
-                                  </div>
-                                )}
                             </td>
                             <td className="p-4 align-middle text-sm text-gray-600">
                               {formattedDate.date}
                               <br />
-                              <span className="text-xs">
-                                {formattedDate.time}
-                              </span>
+                              <span className="text-xs">{formattedDate.time}</span>
                             </td>
                             <td className="p-4 align-middle">
                               <div className="flex gap-2">
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-8 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100"
-                                  onClick={(e) => {
-                                    e.stopPropagation()
-                                    handleCall(lead.phone)
-                                  }}
-                                  disabled={!lead.phone}
-                                >
+                                <Button variant="outline" size="sm" className="h-8 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100" onClick={(e) => { e.stopPropagation(); handleCall(lead.phone) }} disabled={!lead.phone}>
                                   <Phone className="h-3 w-3" />
                                 </Button>
                                 {lead.email && (
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="h-8 bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
-                                    onClick={(e) => {
-                                      e.stopPropagation()
-                                      handleEmail(lead.email)
-                                    }}
-                                  >
+                                  <Button variant="outline" size="sm" className="h-8 bg-green-50 border-green-200 text-green-700 hover:bg-green-100" onClick={(e) => { e.stopPropagation(); handleEmail(lead.email) }}>
                                     <Mail className="h-3 w-3" />
                                   </Button>
                                 )}
@@ -910,91 +708,25 @@ export default function LeadsTable({
                               <td colSpan={8} className="p-4">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                   <div>
-                                    <h4 className="font-medium text-gray-900 mb-2">
-                                      Lead Details
-                                    </h4>
+                                    <h4 className="font-medium text-gray-900 mb-2">Lead Details</h4>
                                     <div className="space-y-2 text-gray-700">
-                                      <div>
-                                        <span className="font-medium">
-                                          Source:
-                                        </span>{" "}
-                                        {lead.source || "Not specified"}
-                                      </div>
-                                      <div>
-                                        <span className="font-medium">
-                                          Consent:
-                                        </span>{" "}
-                                        {lead.consent ? "Yes" : "No"}
-                                      </div>
-                                      <div>
-                                        <span className="font-medium">
-                                          Course:
-                                        </span>{" "}
-                                        {lead.course || "Not specified"}
-                                      </div>
-                                      <div>
-                                        <span className="font-medium">
-                                          Priority:
-                                        </span>{" "}
-                                        {getPriorityBadge(lead.priority)}
-                                      </div>
-                                      <div>
-                                        <span className="font-medium">
-                                          TeleCRM Sync:
-                                        </span>{" "}
-                                        {lead.telecrmSynced ? "Yes" : "No"}
-                                      </div>
-                                      {lead.telecrmId &&
-                                        lead.telecrmId !== "unknown" && (
-                                          <div>
-                                            <span className="font-medium">
-                                              TeleCRM ID:
-                                            </span>{" "}
-                                            {lead.telecrmId}
-                                          </div>
-                                        )}
-                                      {lead.telecrmError && (
-                                        <div>
-                                          <span className="font-medium text-red-600">
-                                            Sync Error:
-                                          </span>{" "}
-                                          {lead.telecrmError}
-                                        </div>
-                                      )}
-                                      <div>
-                                        <span className="font-medium">
-                                          Created:
-                                        </span>{" "}
-                                        {
-                                          formatDate(lead.createdAt)
-                                            .date
-                                        }{" "}
-                                        {
-                                          formatDate(lead.createdAt)
-                                            .time
-                                        }
-                                      </div>
-                                      <div>
-                                        <span className="font-medium">
-                                          Updated:
-                                        </span>{" "}
-                                        {
-                                          formatDate(lead.updatedAt)
-                                            .date
-                                        }{" "}
-                                        {
-                                          formatDate(lead.updatedAt)
-                                            .time
-                                        }
-                                      </div>
+                                      <div><span className="font-medium">Source:</span> {lead.source || "https://www.ismoskinclinicchennai.in/"}</div>
+                                      <div><span className="font-medium">Consent:</span> {lead.consent ? "Yes" : "No"}</div>
+                                      <div><span className="font-medium">Treatment:</span> {lead.treatment || "Not specified"}</div>
+                                      <div><span className="font-medium">Concern:</span> {lead.concern || "Not specified"}</div>
+                                      <div><span className="font-medium">Preferred Time:</span> {lead.preferredDateTime || "Not specified"}</div>
+                                      <div><span className="font-medium">Priority:</span> {getPriorityBadge(lead.priority)}</div>
+                                      <div><span className="font-medium">TeleCRM Sync:</span> {lead.telecrmSynced ? "Yes" : "No"}</div>
+                                      {lead.telecrmId && lead.telecrmId !== "unknown" && <div><span className="font-medium">TeleCRM ID:</span> {lead.telecrmId}</div>}
+                                      {lead.telecrmError && <div><span className="font-medium text-red-600">Sync Error:</span> {lead.telecrmError}</div>}
+                                      <div><span className="font-medium">Created:</span> {formatDate(lead.createdAt).date} {formatDate(lead.createdAt).time}</div>
+                                      <div><span className="font-medium">Updated:</span> {formatDate(lead.updatedAt).date} {formatDate(lead.updatedAt).time}</div>
                                     </div>
                                   </div>
                                   <div>
-                                    <h4 className="font-medium text-gray-900 mb-2">
-                                      Message
-                                    </h4>
+                                    <h4 className="font-medium text-gray-900 mb-2">Message & Concerns</h4>
                                     <p className="text-gray-700 bg-white p-3 rounded border border-gray-200">
-                                      {lead.message || "No message provided"}
+                                      {lead.message || lead.concern || "No additional details provided"}
                                     </p>
                                   </div>
                                 </div>
@@ -1015,30 +747,20 @@ export default function LeadsTable({
             <div>
               Showing {filteredLeads.length} of {leads.length} leads
               {searchTerm && ` • Filtered by: "${searchTerm}"`}
-              {formFilter !== "all" &&
-                ` • Form: ${
-                  formFilter === "elite form lp" ? "Elite Form LP" : formFilter
-                }`}
+              {formFilter !== "all" && ` • Form: ${formFilter === "hair consultation form" ? "Hair Consultation" : formFilter}`}
             </div>
             <div className="flex gap-4">
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                <span>
-                  New: {leads.filter((l) => l.status === "NEW").length}
-                </span>
+                <span>New: {leads.filter((l) => l.status === "NEW").length}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-green-500 rounded-full" />
-                <span>
-                  Converted:{" "}
-                  {leads.filter((l) => l.status === "CONVERTED").length}
-                </span>
+                <span>Converted: {leads.filter((l) => l.status === "CONVERTED").length}</span>
               </div>
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-gray-500 rounded-full" />
-                <span>
-                  Synced: {leads.filter((l) => l.telecrmSynced).length}
-                </span>
+                <span>Synced: {leads.filter((l) => l.telecrmSynced).length}</span>
               </div>
             </div>
           </div>
