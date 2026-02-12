@@ -22,7 +22,7 @@ export default function Home() {
         <section id="why">
           <WhyChooseSection />
         </section>
-<RealPatientResultsSection />
+{/* <RealPatientResultsSection /> */}
         <section id="services">
           <StudentSuccess />
         </section>

@@ -13,7 +13,7 @@ const BeforeAfterSection = () => {
   const combinedImages = [
     {
       id: 1,
-      image: "/before-after-1.jpg",
+      image: "/Ismoone.png",
       title: "Male Pattern Hair Loss",
       description: "6 months after PRP + QR 678 treatment",
       beforeLabel: "Before Treatment",
@@ -204,7 +204,7 @@ const BeforeAfterSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="w-full bg-white py-12 max-[470px]:py-8 md:py-16 overflow-hidden"
+        className="w-full bg-white py-10 max-[470px]:py-8 md:py-10 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Section Header */}
@@ -235,7 +235,7 @@ const BeforeAfterSection = () => {
             </motion.p>
           </motion.div>
 
-          {/* Desktop Grid (4 columns) */}
+          {/* Desktop Grid (4 columns) - 4:5 Aspect Ratio */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -260,8 +260,8 @@ const BeforeAfterSection = () => {
                 whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
-                {/* Combined Image Container with Overlay Effect */}
-                <div className="relative h-48 lg:h-56 overflow-hidden rounded-t-lg">
+                {/* Combined Image Container with 4:5 Aspect Ratio */}
+                <div className="relative aspect-[4/5] overflow-hidden rounded-t-lg">
                   {/* Combined Before/After Image */}
                   <motion.img
                     variants={imageVariants}
@@ -339,14 +339,14 @@ const BeforeAfterSection = () => {
             ))}
           </motion.div>
 
-          {/* Mobile Carousel */}
+          {/* Mobile Carousel - 4:5 Aspect Ratio */}
           <div className="md:hidden relative mb-8">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative h-64 overflow-hidden rounded-lg"
+              className="relative overflow-hidden rounded-lg"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
@@ -363,7 +363,7 @@ const BeforeAfterSection = () => {
                     transition={{ delay: index * 0.1 }}
                     className="w-full flex-shrink-0"
                   >
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="relative aspect-[4/5] overflow-hidden">
                       {/* Combined Image */}
                       <motion.img
                         initial={{ scale: 1.1 }}
