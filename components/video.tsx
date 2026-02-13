@@ -13,7 +13,7 @@ const BeforeAfterSection = () => {
   const combinedImages = [
     {
       id: 1,
-      image: "/Ismoone.png",
+      image: "/ismoonenew.png",
       title: "Male Pattern Hair Loss",
       description: "6 months after PRP + QR 678 treatment",
       beforeLabel: "Before Treatment",
@@ -21,7 +21,7 @@ const BeforeAfterSection = () => {
     },
     {
       id: 2,
-      image: "/before-after-2.jpg",
+      image: "/ismotwo.png",
       title: "Female Hair Thinning",
       description: "4 months after GFC therapy",
       beforeLabel: "Before Treatment",
@@ -29,7 +29,7 @@ const BeforeAfterSection = () => {
     },
     {
       id: 3,
-      image: "/before-after-3.jpg",
+      image: "/ismothree.png",
       title: "Traction Alopecia",
       description: "8 weeks after laser therapy",
       beforeLabel: "Before Treatment",
@@ -37,7 +37,7 @@ const BeforeAfterSection = () => {
     },
     {
       id: 4,
-      image: "/before-after-4.jpg",
+      image: "/ismofour.png",
       title: "Hair Density Improvement",
       description: "5 months after combined treatment",
       beforeLabel: "Before Treatment",
@@ -393,7 +393,7 @@ const BeforeAfterSection = () => {
                       </motion.div> */}
                       
                       {/* Center Divider */}
-                      <div className="absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-white/80">
+                      {/* <div className="absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-white/80"> */}
                         <motion.div
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ repeat: Infinity, duration: 2 }}
@@ -405,7 +405,7 @@ const BeforeAfterSection = () => {
                             </svg>
                           </div>
                         </motion.div>
-                      </div>
+                      {/* </div> */}
                     </div>
                     
                     {/* Image Info for Mobile */}
