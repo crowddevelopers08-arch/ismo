@@ -111,20 +111,20 @@ const HairCareSection = () => {
   };
 
   const treatmentCards = [
-    // {
-    //   title: "PRP Hair Treatment",
-    //   image: "PRP-Hair-Injections-Before-and-After.jpg",
-    //   desc: "Controls hair fall by strengthening weak hair roots using your own platelet-rich plasma. Improves thickness and supports natural regrowth.",
-    // },
+    {
+      title: "Growth Factor Hair Treatment",
+      image: "PRP-Hair-Injections-Before-and-After.jpg",
+      desc: "Reduces hair fall by activating weak follicles with your body’s natural growth factors. Enhances thickness and promotes healthy regrowth.",
+    },
     {
       title: "GFC Hair Treatment",
       image: "/gfc.jpg",
       desc: "Growth Factor Concentrate derived from your own blood to strengthen roots, reduce hair fall, and improve overall hair density.",
     },
     {
-      title: "Laser Hair Therapies & Scalp Revitalization",
-      image: "/laser.jpg",
-      desc: "Non-invasive light-based therapies that improve blood circulation, nourish follicles, and support long-term hair health.",
+      title: "Dandruff & Scalp Issues",
+      image: "/dantrugg.jpg",
+      desc: "If you're struggling with dandruff or an itchy scalp, our treatments will help keep your scalp healthy and encourage hair growth.",
     },
   ];
 
@@ -288,7 +288,7 @@ const HairCareSection = () => {
           {/* BOTTOM CARDS - Responsive grid */}
           <motion.div
             variants={containerVariants}
-            className="lg:col-start-1 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6"
+            className="lg:col-start-1 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           >
             {treatmentCards.map((item, index) => (
               <motion.div
