@@ -9,10 +9,10 @@ const Footer = () => {
   const [showForm, setShowForm] = useState(false); // State for showing form
 
   const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Youtube, href: '#', label: 'YouTube' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Instagram, href: 'https://www.instagram.com/ismoclinic.skin/', label: 'Instagram' },
+    // { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Youtube, href: 'https://www.youtube.com/@ismoskinhairclinic2729', label: 'YouTube' },
+    // { icon: Twitter, href: '#', label: 'Twitter' },
   ];
 
   const footerLinks = [
