@@ -112,7 +112,7 @@ const HairCareSection = () => {
 
   const treatmentCards = [
     {
-      title: "Growth Factor Hair Treatment",
+      title: "Natural Hair Boost",
       image: "PRP-Hair-Injections-Before-and-After.jpg",
       desc: "Reduces hair fall by activating weak follicles with your body’s natural growth factors. Enhances thickness and promotes healthy regrowth.",
     },
