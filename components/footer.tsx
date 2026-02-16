@@ -126,11 +126,11 @@ const Footer = () => {
                       +91 80561 33033
                     </a>
                     <a 
-                      href="mailto:info@ismoclinic.com" 
+                      href="mailto:info@ismoclinics.com" 
                       className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm opacity-80 hover:opacity-100 transition-opacity hover:text-white"
                     >
                       <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
-                      info@ismoclinic.com
+                      info@ismoclinics.com
                     </a>
                   </div>
 

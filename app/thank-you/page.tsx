@@ -68,7 +68,7 @@ export default function ThankYou() {
               
               <div>
                 <p className="font-medium text-[#634031]">Email</p>
-                <p className="text-[#785546]">info@ismo.in</p>
+                <p className="text-[#785546]">info@ismoclinics.com</p>
               </div>
               
               <div>

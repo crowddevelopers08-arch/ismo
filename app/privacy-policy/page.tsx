@@ -282,7 +282,7 @@ export default function PrivacyPolicy() {
                 </div>
                 <div>
                   <p className="font-semibold text-[#634031] mb-1">Email</p>
-                  <p className="text-[#785546]">info@ismo.in</p>
+                  <p className="text-[#785546]">info@ismoclinics.com</p>
                 </div>
               </div>
             </div>

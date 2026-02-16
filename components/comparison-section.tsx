@@ -112,9 +112,9 @@ const HairCareSection = () => {
 
   const treatmentCards = [
     {
-      title: "Natural Hair Boost",
+      title: "Exosome Hair Boost",
       image: "PRP-Hair-Injections-Before-and-After.jpg",
-      desc: "Reduces hair fall by activating weak follicles with your body’s natural growth factors. Enhances thickness and promotes healthy regrowth.",
+      desc: "Reduces hair fall by supporting weak follicles with advanced exosome therapy. Helps improve thickness and encourages healthier hair regrowth over time.",
     },
     {
       title: "GFC Hair Treatment",

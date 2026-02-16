@@ -123,10 +123,10 @@ const MapComponent = () => {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-lg sm:text-xl font-bold text-[#65302f] mb-1 sm:mb-2">Email</h3>
                   <a 
-                    href="mailto:info@ismo.in" 
+                    href="mailto:info@ismoclinics.com" 
                     className="block text-base sm:text-lg text-[#785546] hover:text-[#65302f] transition-colors break-words"
                   >
-                    info@ismo.in
+                    info@ismoclinics.com
                   </a>
                   <p className="text-xs sm:text-sm text-[#785546]/80 mt-1">Send us your inquiries</p>
                 </div>
