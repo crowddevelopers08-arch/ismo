@@ -22,7 +22,7 @@ const Footer = () => {
         { label: 'QR 678 Therapy', href: '#treatments' },
         // { label: 'PRP Treatment', href: '#treatments' },
         { label: 'GFC Therapy', href: '#treatments' },
-        { label: 'Laser Therapy', href: '#treatments' },
+        { label: 'Exosome Therapy', href: '#treatments' },
       ],
     },
     {
@@ -113,7 +113,7 @@ const Footer = () => {
                     />
                   </div>
                   <p className="text-xs sm:text-sm opacity-80 leading-relaxed mb-6 sm:mb-8">
-                    Chennai's premier dermatology-led hair clinic. Trusted by celebrities for advanced hair restoration treatments.
+                    Chennai's premier dermatology-led hair clinic. Trusted by celebrities for advanced hair regeneration treatments.
                   </p>
 
                   {/* Contact Info */}
