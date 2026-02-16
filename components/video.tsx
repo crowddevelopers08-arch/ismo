@@ -7,7 +7,7 @@ const BeforeAfterSection = () => {
 
   const imageData = {
     id: 1,
-    image: "/singlebefaft.jpeg",
+    image: "/exo.jpg",
     title: "Male Pattern Hair Loss",
     description: "6 months after PRP + QR 678 treatment"
   };
