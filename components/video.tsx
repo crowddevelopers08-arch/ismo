@@ -9,7 +9,7 @@ const BeforeAfterSection = () => {
     id: 1,
     image: "/exo.jpg",
     title: "Male Pattern Hair Loss",
-    description: "6 months after PRP + QR 678 treatment"
+    description: "6 months after Exosome Hair Boost + QR 678 treatment"
   };
 
   // Handle form open/close

@@ -150,7 +150,7 @@ export default function ThankYou() {
               © 2026 ISMO Clinic | Skin & Aesthetics, Chennai
             </p>
             <p className="text-[#785546] text-sm mt-2">
-              Advanced hair treatments: QR 678, GFC, PRP, Laser Therapies
+              Advanced hair treatments: QR 678, GFC, Exosome Therapies
             </p>
           </div>
         </footer>

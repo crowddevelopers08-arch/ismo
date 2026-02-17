@@ -14,7 +14,7 @@ const FAQSection = () => {
     },
     {
       question: 'Are the treatments painful?',
-      answer: 'Our treatments are designed to be comfortable. For procedures like PRP and GFC, we use topical numbing to minimize any discomfort. Most patients describe the sensation as mild and very tolerable.',
+      answer: 'Our treatments are designed to be comfortable. For procedures like Exosome Hair Boost and GFC, we use topical numbing to minimize any discomfort. Most patients describe the sensation as mild and very tolerable.',
     },
     {
       question: 'How many sessions will I need?',

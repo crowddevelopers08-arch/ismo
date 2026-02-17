@@ -23,7 +23,7 @@ const ProcedureSection = () => {
       content: (
         <>
           <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#65302f] mb-2 md:mb-3 font-outfit">Personalized Treatment Plan</h3>
-          <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Based on your assessment, we design a customized combination of therapies like QR 678, PRP, GFC, or laser treatments tailored to your needs.</p>
+          <p className="text-sm md:text-base text-[#785546] leading-relaxed font-outfit">Based on your assessment, we design a customized combination of therapies like QR 678, Exosome Hair Boost or GFC treatments tailored to your needs.</p>
         </>
       ),
       shortTitle: "Personalized Plan"

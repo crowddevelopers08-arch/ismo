@@ -348,7 +348,7 @@ export default function ConsultationForm({ onClose }: ConsultationFormProps) {
             <option value="">Select treatment</option>
             <option value="QR 678">QR 678</option>
             <option value="GFC">GFC</option>
-            <option value="PRP">PRP</option>
+            <option value="Exosome Hair Boost">Exosome Hair Boost</option>
             <option value="Not sure – Need doctor guidance">Not sure – Need doctor guidance</option>
           </motion.select>
         </motion.div>
