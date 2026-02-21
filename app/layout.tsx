@@ -63,6 +63,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} antialiased`}>
       <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-SC13GQ8FGQ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-SC13GQ8FGQ');
+          `}
+        </Script>
+
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
