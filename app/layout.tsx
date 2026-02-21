@@ -77,7 +77,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google Ads */}
+        {/* Google Ads - Combined configuration */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16734973356"
           strategy="afterInteractive"
@@ -87,7 +87,16 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-16734973356');
+            
+            // Configure Google Ads with phone number
+            gtag('config', 'AW-16734973356', {
+              'phone_conversion_number': '+91 80561 33033'
+            });
+            
+            // Additional phone conversion configuration
+            gtag('config', 'AW-16734973356/A0GCCMG3wvwbEKzb7as-', {
+              'phone_conversion_number': '+91 80561 33033'
+            });
           `}
         </Script>
 

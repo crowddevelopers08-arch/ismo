@@ -7,17 +7,6 @@ export default function ThankYou() {
   return (
     <>
       <ThankNavbar />
-      
-      <Script
-        id="google-ads-conversion"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            gtag('event', 'conversion', {'send_to': 'AW-16722442662/tQCWCN_li7kbEKbz8KU-'});
-          `
-        }}
-      />
-      
       <div className="min-h-screen bg-white text-gray-800 pt-16">
         <div className="max-w-3xl mx-auto px-4 py-12">
           {/* Success Icon */}

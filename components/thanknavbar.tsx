@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Script from "next/script";
 
 interface NavbarProps {
   onConsultationClick?: () => void;
@@ -38,6 +39,22 @@ export default function ThankNavbar({ onConsultationClick }: NavbarProps) {
     };
   }, []);
 
+  // Trigger conversion event when component mounts (page loads)
+  useEffect(() => {
+    // Only run in browser and when mounted
+    if (isMounted && typeof window !== "undefined" && window.gtag) {
+      // Small delay to ensure gtag is loaded
+      setTimeout(() => {
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-16734973356/CFIVCPLctPwbEKzb7as-',
+          'value': 1.0,
+          'currency': 'INR'
+        });
+        console.log('Conversion event triggered: Submit lead form ISMO');
+      }, 1000);
+    }
+  }, [isMounted]);
+
   // Don't render anything during SSR to avoid hydration mismatches
   if (!isMounted) {
     return (
@@ -55,48 +72,66 @@ export default function ThankNavbar({ onConsultationClick }: NavbarProps) {
   }
 
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 w-full z-50 flex justify-between items-center px-4 sm:px-6 md:px-16 py-3 md:py-4 transition-all duration-500 ${
-        navScrolled
-          ? "bg-[#634031] shadow-lg"
-          : "bg-[#634031] shadow-sm"
-      }`}
-    >
-      {/* Left Logo */}
-      <div className="flex items-center gap-4 md:gap-10">
-        <Image
-          src="/Logo-Final-White-01.png"
-          alt="ISMO Clinic Logo"
-          width={isMobile ? 120 : 160}
-          height={isMobile ? 40 : 50}
-          className="object-contain"
-          priority
-        />
-      </div>
+    <>
+      {/* Google Ads Conversion Script */}
+      <Script id="google-ads-conversion" strategy="afterInteractive">
+        {`
+          // Initialize gtag if not already defined
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          
+          // Fire conversion event
+          gtag('event', 'conversion', {
+            'send_to': 'AW-16734973356/CFIVCPLctPwbEKzb7as-',
+            'value': 1.0,
+            'currency': 'INR'
+          });
+        `}
+      </Script>
 
-      {/* Call Button */}
-      <a
-        href="tel:+918056133033"
-        className="bg-white hover:bg-[#fff7f1] text-[#634031] px-4 py-2 md:px-5 md:py-2.5 rounded-full font-semibold transition-all duration-300 text-sm md:text-base whitespace-nowrap flex items-center gap-2 border border-white hover:border-[#fff7f1] shadow-sm hover:shadow"
+      <motion.nav
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={`fixed top-0 left-0 right-0 w-full z-50 flex justify-between items-center px-4 sm:px-6 md:px-16 py-3 md:py-4 transition-all duration-500 ${
+          navScrolled
+            ? "bg-[#634031] shadow-lg"
+            : "bg-[#634031] shadow-sm"
+        }`}
       >
-        <svg 
-          className="w-4 h-4 md:w-5 md:h-5" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
+        {/* Left Logo */}
+        <div className="flex items-center gap-4 md:gap-10">
+          <Image
+            src="/Logo-Final-White-01.png"
+            alt="ISMO Clinic Logo"
+            width={isMobile ? 120 : 160}
+            height={isMobile ? 40 : 50}
+            className="object-contain"
+            priority
           />
-        </svg>
-        {isMobile ? "Call Now" : "Call +91 80561 33033"}
-      </a>
-    </motion.nav>
+        </div>
+
+        {/* Call Button */}
+        <a
+          href="tel:+918056133033"
+          className="bg-white hover:bg-[#fff7f1] text-[#634031] px-4 py-2 md:px-5 md:py-2.5 rounded-full font-semibold transition-all duration-300 text-sm md:text-base whitespace-nowrap flex items-center gap-2 border border-white hover:border-[#fff7f1] shadow-sm hover:shadow"
+        >
+          <svg 
+            className="w-4 h-4 md:w-5 md:h-5" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" 
+            />
+          </svg>
+          {isMobile ? "Call Now" : "Call +91 80561 33033"}
+        </a>
+      </motion.nav>
+    </>
   );
 }
