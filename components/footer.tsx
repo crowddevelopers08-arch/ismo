@@ -10,9 +10,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Instagram, href: 'https://www.instagram.com/ismoclinic.skin/', label: 'Instagram' },
-    // { icon: Facebook, href: '#', label: 'Facebook' },
     { icon: Youtube, href: 'https://www.youtube.com/@ismoskinhairclinic2729', label: 'YouTube' },
-    // { icon: Twitter, href: '#', label: 'Twitter' },
   ];
 
   const footerLinks = [
@@ -20,7 +18,6 @@ const Footer = () => {
       title: 'Treatments',
       links: [
         { label: 'QR 678 Therapy', href: '#treatments' },
-        // { label: 'PRP Treatment', href: '#treatments' },
         { label: 'GFC Therapy', href: '#treatments' },
         { label: 'Exosome Therapy', href: '#treatments' },
       ],
@@ -67,15 +64,16 @@ const Footer = () => {
         </div>
       )}
 
-      {/* Mobile CTA Buttons (Fixed at bottom for mobile only) */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
-        <div className="flex w-full bg-white/95 backdrop-blur-sm border-t border-[#e0c9c2] shadow-lg">
+      {/* Mobile CTA Buttons - Fixed at bottom for mobile only */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 block md:hidden">
+        <div className="flex w-full bg-[#65302f] border-t border-[#e0c9c2] shadow-lg">
           {/* Call Now Button */}
           <a 
-            href="tel:+9180561 33033"
-            className="flex-1 flex items-center justify-center py-4 px-2 text-center transition-colors duration-300 hover:bg-[#f5f5f5]"
+            href="tel:+918056133033"
+            className="flex-1 flex items-center justify-center py-4 px-2 text-center transition-colors duration-300 active:bg-[#7a4a48] hover:bg-[#7a4a48]"
           >
-            <span className="text-base font-semibold text-[#634031]">Call Now</span>
+            <Phone className="w-4 h-4 text-white mr-2" />
+            <span className="text-base font-semibold text-white">Call Now</span>
           </a>
           
           {/* Divider */}
@@ -84,15 +82,16 @@ const Footer = () => {
           {/* Book Now Button */}
           <button 
             onClick={handleOpenForm}
-            className="flex-1 flex items-center justify-center py-4 px-2 text-center transition-colors duration-300 hover:bg-[#f5f5f5]"
+            className="flex-1 flex items-center justify-center py-4 px-2 text-center transition-colors duration-300 active:bg-[#7a4a48] hover:bg-[#7a4a48]"
           >
-            <span className="text-base font-semibold text-[#634031]">Book Now</span>
+            <span className="text-base font-semibold text-white">Book Now</span>
           </button>
         </div>
       </div>
 
-      <footer className="w-full text-white pb-16 md:pb-0" style={{ backgroundColor: '#65302f' }}>
-        <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto">
+      <footer className="w-full text-white" style={{ backgroundColor: '#65302f' }}>
+        {/* Add padding bottom on mobile to account for fixed buttons */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 mx-auto pb-24 md:pb-12 lg:pb-12">
           <div className="py-8 sm:py-12 lg:py-12">
             <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
               {/* Brand Column */}
@@ -119,7 +118,7 @@ const Footer = () => {
                   {/* Contact Info */}
                   <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
                     <a 
-                      href="tel:+91 80561 33033" 
+                      href="tel:+918056133033" 
                       className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm opacity-80 hover:opacity-100 transition-opacity hover:text-white"
                     >
                       <Phone className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -140,6 +139,8 @@ const Footer = () => {
                       <motion.a
                         key={index}
                         href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         whileHover={{ scale: 1.1, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
@@ -162,7 +163,7 @@ const Footer = () => {
                   transition={{ duration: 0.6, delay: 0.1 * (colIndex + 1) }}
                   className="mt-4 sm:mt-0"
                 >
-                  <h4 className="font-semibold text-sm sm:text-base mb-4 sm:mb-6">{column.title}</h4>
+                  <h4 className="font-semibold text-sm sm:text-base mb-4 sm:mb-6 text-white">{column.title}</h4>
                   <ul className="space-y-2 sm:space-y-3">
                     {column.links.map((link, linkIndex) => (
                       <li key={linkIndex}>
