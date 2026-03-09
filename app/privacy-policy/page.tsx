@@ -42,7 +42,7 @@ export default function PrivacyPolicy() {
               1
             </div>
             <h2 className="text-2xl font-bold text-[#634031]">
-              Informations We Collect
+              Information We Collect
             </h2>
           </div>
           <p className="text-[#785546] mb-4 leading-relaxed">
