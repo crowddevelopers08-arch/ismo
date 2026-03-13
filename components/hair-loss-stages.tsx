@@ -7,7 +7,7 @@ const ProcedureSection = () => {
   // Data for hair treatments
   const data = {
     1: {
-      img: "/advancednew.jpg",
+      img: "https://ik.imagekit.io/qjhkxgniec/public/advancednew.jpg",
       alt: "Advanced Hair Assessment",
       content: (
         <>
@@ -18,7 +18,7 @@ const ProcedureSection = () => {
       shortTitle: "Advanced Assessment"
     },
     2: {
-      img: "/personalizeda.png",
+      img: "https://ik.imagekit.io/qjhkxgniec/public/personalizeda.png",
       alt: "Personalized Treatment Plan",
       content: (
         <>
@@ -29,7 +29,7 @@ const ProcedureSection = () => {
       shortTitle: "Personalized Plan"
     },
     3: {
-      img: "/maintain.jpg",
+      img: "https://ik.imagekit.io/qjhkxgniec/public/maintain.jpg",
       alt: "Treatment & Monitoring",
       content: (
         <>
@@ -40,7 +40,7 @@ const ProcedureSection = () => {
       shortTitle: "Treatment & Monitoring"
     },
     4: {
-      img: "/results.jpg",
+      img: "https://ik.imagekit.io/qjhkxgniec/public/results.jpg",
       alt: "Results & Maintenance",
       content: (
         <>
@@ -51,7 +51,7 @@ const ProcedureSection = () => {
       shortTitle: "Results & Maintenance"
     },
     5: {
-      img: "/hostle.jpg",
+      img: "https://ik.imagekit.io/qjhkxgniec/public/hostle.jpg",
       alt: "Holistic Wellness Support",
       content: (
         <>

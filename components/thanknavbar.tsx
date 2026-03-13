@@ -102,7 +102,7 @@ export default function ThankNavbar({ onConsultationClick }: NavbarProps) {
         {/* Left Logo */}
         <div className="flex items-center gap-4 md:gap-10">
           <Image
-            src="/Logo-Final-White-01.png"
+            src="https://ik.imagekit.io/qjhkxgniec/public/Logo-Final-White-01.png"
             alt="ISMO Clinic Logo"
             width={isMobile ? 120 : 160}
             height={isMobile ? 40 : 50}

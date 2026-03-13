@@ -106,7 +106,7 @@ const Footer = () => {
                   {/* ISMO Logo */}
                   <div className="mb-4">
                     <img 
-                      src="/Logo-Final-White-01.png" 
+                      src="https://ik.imagekit.io/qjhkxgniec/public/Logo-Final-White-01.png" 
                       alt="ISMO Skin & Aesthetics" 
                       className="h-16 w-auto max-w-[160px] sm:max-w-[180px] lg:max-w-[200px]"
                     />

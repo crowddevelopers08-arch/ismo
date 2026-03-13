@@ -122,7 +122,7 @@ export default function HeroSection() {
                   className="mb-4"
                 >
                   <Image
-                    src="/Logo-Final-White-01.png"
+                    src="https://ik.imagekit.io/qjhkxgniec/public/Logo-Final-White-01.png"
                     alt="alora logo"
                     width={180}
                     height={60}
@@ -191,7 +191,7 @@ export default function HeroSection() {
         className="absolute inset-0 z-0 hidden md:block"
       >
         <Image
-          src="/newbgcolour.jpg"
+          src="https://ik.imagekit.io/qjhkxgniec/public/newbgcolour.jpg"
           alt="Modern dental clinic background"
           fill
           className="object-cover"
@@ -224,7 +224,7 @@ export default function HeroSection() {
           className="flex items-center gap-4 md:gap-10"
         >
           <Image
-            src="/Logo-Final-White-01.png"
+            src="https://ik.imagekit.io/qjhkxgniec/public/Logo-Final-White-01.png"
             alt="ISMO Clinic logo"
             width={isMobile ? 120 : 200}
             height={isMobile ? 45 : 40}
@@ -363,7 +363,7 @@ export default function HeroSection() {
               className="mb-6 relative w-full h-64 rounded-xl overflow-hidden shadow-lg"
             >
               <Image
-                src="/newbgcolour-mob.jpg"
+                src="https://ik.imagekit.io/qjhkxgniec/public/newbgcolour-mob.jpg"
                 alt="ISMO Clinic Hair Treatment"
                 fill
                 className="object-cover"

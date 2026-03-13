@@ -10,21 +10,21 @@ const celebrityReviews = [
   {
     name: 'Aishwarya Dutta',
     title: 'Actress',
-    image: '/ais.jpg',
+    image: 'https://ik.imagekit.io/qjhkxgniec/public/ais.jpg',
     rating: 5,
     quote: 'ISMO completely transformed my hair. The personalized approach and expert care made all the difference. Highly recommended!',
   },
   {
     name: 'N. Lingusamy',
     title: 'Director',
-    image: '/n-lingusamy.jpg',
+    image: 'https://ik.imagekit.io/qjhkxgniec/public/n-lingusamy.jpg',
     rating: 5,
     quote: 'Professional team with cutting-edge treatments. My hair has never looked better. ISMO is the best in Chennai.',
   },
   {
     name: 'Nikki Galrani',
     title: 'Actress',
-    image: '/Nikki.jpg',
+    image: 'https://ik.imagekit.io/qjhkxgniec/public/Nikki.jpg',
     rating: 5,
     quote: 'ISMO understands hair care on another level. The results speak for themselves. I trust them completely.',
   },
@@ -252,7 +252,7 @@ export default function TestimonialsSection() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-[#65302f]/10 via-[#785546]/10 to-[#65302f]/10 rounded-2xl blur-xl"></div>
                 <Image
-                  src="/revvie.jpg"
+                  src="https://ik.imagekit.io/qjhkxgniec/public/revvie.jpg"
                   alt="Happy Client"
                   width={600}
                   height={500}

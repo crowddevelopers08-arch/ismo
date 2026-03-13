@@ -7,7 +7,7 @@ const BeforeAfterSection = () => {
 
   const imageData = {
     id: 1,
-    image: "/exo.jpg",
+    image: "https://ik.imagekit.io/qjhkxgniec/public/exo.jpg",
     title: "Male Pattern Hair Loss",
     description: "6 months after Exosome Hair Boost + QR 678 treatment"
   };

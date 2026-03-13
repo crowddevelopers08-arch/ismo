@@ -113,17 +113,17 @@ const HairCareSection = () => {
   const treatmentCards = [
     {
       title: "Exosome Hair Boost",
-      image: "PRP-Hair-Injections-Before-and-After.jpg",
+      image: "https://ik.imagekit.io/qjhkxgniec/public/PRP-Hair-Injections-Before-and-After.jpg",
       desc: "Reduces hair fall by supporting weak follicles with advanced exosome therapy. Helps improve thickness and encourages healthier hair regrowth over time.",
     },
     {
       title: "GFC Hair Treatment",
-      image: "/gfc.jpg",
+      image: "https://ik.imagekit.io/qjhkxgniec/public/gfc.jpg",
       desc: "Growth Factor Concentrate derived from your own blood to strengthen roots, reduce hair fall, and improve overall hair density.",
     },
     {
       title: "Dandruff & Scalp Issues",
-      image: "/dantrugg.jpg",
+      image: "https://ik.imagekit.io/qjhkxgniec/public/dantrugg.jpg",
       desc: "If you're struggling with dandruff or an itchy scalp, our treatments will help keep your scalp healthy and encourage hair growth.",
     },
   ];
@@ -189,7 +189,7 @@ const HairCareSection = () => {
             >
               <motion.img
                 whileHover="hover"
-                src="/advanceddd.jpg"
+                src="https://ik.imagekit.io/qjhkxgniec/public/advanceddd.jpg"
                 alt="Advanced Hair Treatment"
                 className="w-full h-full object-cover object-center"
               />
@@ -245,7 +245,7 @@ const HairCareSection = () => {
               <motion.img
                 whileHover={{ rotate: [0, -5, 5, -5, 0] }}
                 transition={{ duration: 0.5 }}
-                src="/qr.jpg"
+                src="https://ik.imagekit.io/qjhkxgniec/public/qr.jpg"
                 alt="QR 678 Hair Treatment"
                 className="h-32 sm:h-40 md:h-48 w-auto object-contain"
               />
